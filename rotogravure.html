@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotogravure Printing Products — Riopack Co.</title>
+  <meta name="description" content="Browse Riopack's rotogravure-printed flexible packaging: food packaging, stiffener board, cosmetics &amp; soap wrappers, PVC extruder lines, polyethylene blowing film, and fat &amp; oils wrappers.">
+
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://riopack.com">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,800;1,300;1,400&family=Jost:wght@300;400;500;600&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream:        '#f5f0e8',
+            'cream-mid':  '#ede5d8',
+            'cream-deep': '#e4dace',
+            ink:          '#18120a',
+            'ink-soft':   '#3b2f1e',
+            muted:        '#8a7a68',
+            crimson:      '#b71c2e',
+            'crimson-dk': '#8d1222',
+            border:       '#d9d0c3',
+          },
+          fontFamily: {
+            serif: ['Spectral', 'Georgia', 'serif'],
+            sans:  ['Jost', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', system-ui, sans-serif;
+      background: #0d0905;
+      color: #18120a;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ── Scroll-driven video background ── */
+    #video-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+    #video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      will-change: transform;
+    }
+    #video-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 100% at 50% 0%,   transparent 40%, rgba(4,2,0,0.55) 100%),
+        radial-gradient(ellipse 100% 80%  at 0%   50%,  rgba(4,2,0,0.40) 0%, transparent 70%),
+        rgba(8,5,2,0.22);
+      pointer-events: none;
+      z-index: 2;
+    }
+    #video-scrim {
+      position: absolute;
+      inset: 0;
+      background: rgba(8,5,2,0);
+      transition: background 0.55s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+      z-index: 3;
+    }
+    #video-scrim.active { background: rgba(8,5,2,0.50); }
+
+    /* ── All sections transparent — video shows in gaps ── */
+    main, footer { background: transparent !important; }
+
+    /* ── Floating section cards ── */
+    .site-card {
+      background: rgba(245,240,232,0.91);
+      backdrop-filter: blur(32px) saturate(1.7);
+      -webkit-backdrop-filter: blur(32px) saturate(1.7);
+      border: 1px solid rgba(255,255,255,0.52);
+      border-radius: 8px;
+      box-shadow:
+        0 2px 6px rgba(0,0,0,0.10),
+        0 16px 48px rgba(0,0,0,0.28),
+        0 56px 100px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.68);
+      overflow: hidden;
+    }
+    .site-card-dark {
+      background: rgba(16,10,4,0.88);
+      backdrop-filter: blur(32px) saturate(1.4);
+      -webkit-backdrop-filter: blur(32px) saturate(1.4);
+      border: 1px solid rgba(245,240,232,0.10);
+      border-radius: 8px;
+      box-shadow:
+        0 2px 6px rgba(0,0,0,0.22),
+        0 16px 48px rgba(0,0,0,0.50),
+        0 56px 100px rgba(0,0,0,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+
+    /* ── Grain overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 180px;
+    }
+
+    /* ── Nav ── */
+    #nav {
+      background: rgba(245,240,232,0.06);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid rgba(245,240,232,0.10);
+      transition: background 0.45s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 0.45s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.45s cubic-bezier(0.16,1,0.3,1);
+    }
+    #nav.solid {
+      background: rgba(245,240,232,0.82);
+      backdrop-filter: blur(28px) saturate(1.8);
+      -webkit-backdrop-filter: blur(28px) saturate(1.8);
+      border-bottom: 1px solid rgba(217,208,195,0.55);
+      box-shadow: 0 1px 0 rgba(217,208,195,0.4), 0 8px 32px rgba(24,18,10,0.07);
+    }
+    .nav-a {
+      position: relative;
+      color: rgba(245,240,232,0.82);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    #nav.solid .nav-a { color: #3b2f1e; }
+    .nav-a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: #b71c2e;
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav-a:hover { color: #b71c2e; }
+    .nav-a:hover::after { width: 100%; }
+    .nav-a.active { color: #b71c2e; }
+    .nav-a.active::after { width: 100%; }
+    #nav.solid .nav-a.active { color: #b71c2e; }
+
+    .nav-logo-img {
+      filter: brightness(0) invert(1);
+      transition: filter 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    #nav.solid .nav-logo-img { filter: none; }
+    .nav-mob-btn {
+      color: rgba(245,240,232,0.85);
+      transition: color 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    #nav.solid .nav-mob-btn { color: #18120a; }
+
+    /* ── Mobile menu ── */
+    #mob-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(245,240,232,0.88);
+      backdrop-filter: blur(36px) saturate(1.6);
+      -webkit-backdrop-filter: blur(36px) saturate(1.6);
+      z-index: 300;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.25rem;
+    }
+    #mob-menu.open { display: flex; }
+    .mob-a {
+      font-family: 'Spectral', serif;
+      font-size: 1.85rem;
+      font-weight: 300;
+      color: #18120a;
+      transition: color 0.2s ease;
+    }
+    .mob-a:hover { color: #b71c2e; }
+
+    /* ── Section label ── */
+    .s-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b71c2e;
+    }
+
+    /* ── Reveal ── */
+    .rv {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.72s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.72s cubic-bezier(0.16,1,0.3,1);
+    }
+    .rv.in { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.10s; }
+    .d2 { transition-delay: 0.20s; }
+    .d3 { transition-delay: 0.30s; }
+    .d4 { transition-delay: 0.40s; }
+
+    /* ── Buttons ── */
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #b71c2e;
+      color: #f5f0e8;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.875rem 1.75rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.14s ease;
+      text-decoration: none;
+    }
+    .btn-red:hover  { background: #8d1222; }
+    .btn-red:active { transform: scale(0.98); }
+
+    /* ── Category nav (sticky) ── */
+    #cat-nav {
+      background: rgba(245,240,232,0.78);
+      backdrop-filter: blur(24px) saturate(1.6);
+      -webkit-backdrop-filter: blur(24px) saturate(1.6);
+      border-bottom: 1px solid rgba(217,208,195,0.50);
+      box-shadow: 0 4px 20px rgba(24,18,10,0.08);
+    }
+    .cat-nav-a {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #8a7a68;
+      padding: 0.85rem 1.1rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      white-space: nowrap;
+    }
+    .cat-nav-a:hover { color: #b71c2e; border-bottom-color: #b71c2e; }
+    .cat-nav-a.active { color: #b71c2e; border-bottom-color: #b71c2e; }
+
+    /* ── Product cards ── */
+    .prod-card {
+      background: rgba(255,255,255,0.60);
+      backdrop-filter: blur(12px) saturate(1.4);
+      -webkit-backdrop-filter: blur(12px) saturate(1.4);
+      border: 1px solid rgba(255,255,255,0.72);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(24,18,10,0.06), inset 0 1px 0 rgba(255,255,255,0.80);
+      overflow: hidden;
+      transition: box-shadow 0.28s ease, transform 0.28s ease;
+    }
+    .prod-card:hover {
+      box-shadow: 0 12px 36px rgba(24,18,10,0.14), inset 0 1px 0 rgba(255,255,255,0.80);
+      transform: translateY(-3px);
+    }
+    .prod-card-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: rgba(228,218,206,0.6);
+    }
+    .prod-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);
+    }
+    .prod-card:hover .prod-card-img img { transform: scale(1.06); }
+    .prod-card-body { padding: 1rem 1.125rem 1.25rem; }
+    .prod-card-name {
+      font-family: 'Spectral', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #18120a;
+      line-height: 1.3;
+    }
+
+    /* ── Specs card (no-image categories) ── */
+    .specs-card {
+      background: rgba(245,240,232,0.55);
+      backdrop-filter: blur(16px) saturate(1.5);
+      -webkit-backdrop-filter: blur(16px) saturate(1.5);
+      border: 1px solid rgba(255,255,255,0.60);
+      border-radius: 6px;
+      box-shadow: 0 4px 24px rgba(24,18,10,0.06), inset 0 1px 0 rgba(255,255,255,0.72);
+      padding: 2rem;
+    }
+
+    /* ── Footer link ── */
+    .ft-a {
+      color: rgba(245,240,232,0.55);
+      font-size: 0.875rem;
+      transition: color 0.2s ease;
+    }
+    .ft-a:hover { color: #f5f0e8; }
+
+    /* ── Mobile overrides ── */
+    @media (max-width: 767px) {
+      #video-bg video { display: none; }
+      #video-bg { background: url('poster.jpg') center / cover no-repeat; }
+
+      #cat-nav { top: 4rem; }
+
+      .site-card, .site-card-dark {
+        padding: 1.5rem 1.25rem !important;
+        border-radius: 6px;
+      }
+    }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.65rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      border: 1px solid rgba(24,18,10,0.28);
+      color: #3b2f1e;
+      background: transparent;
+      font-family: 'Jost', 'Cairo', system-ui, sans-serif;
+    }
+    .lang-btn:hover {
+      background: rgba(183,28,46,0.10);
+      border-color: #b71c2e;
+      color: #b71c2e;
+    }
+    html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3,
+    html[dir="rtl"] .font-serif { font-family: 'Cairo', Georgia, serif; }
+    html[dir="rtl"] .s-label,
+    html[dir="rtl"] .nav-a,
+    html[dir="rtl"] .cat-nav-a { letter-spacing: 0; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     SCROLL-DRIVEN VIDEO BACKGROUND
+══════════════════════════════════════════ -->
+<div id="video-bg" aria-hidden="true">
+  <video id="bg-video" muted playsinline preload="auto" tabindex="-1" poster="poster.jpg">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+  <div id="video-scrim"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     MOBILE MENU
+══════════════════════════════════════════ -->
+<div id="mob-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <button id="mob-close" class="absolute top-5 right-5 p-2" style="color:#18120a;" aria-label="Close menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M18 6 6 18M6 6l12 12"/>
+    </svg>
+  </button>
+  <nav class="flex flex-col items-center gap-8 text-center">
+    <a href="index.html#about"        class="mob-a" data-en="About"      data-ar="عن الشركة">About</a>
+    <a href="index.html#rotogravure"  class="mob-a" data-en="Printing"   data-ar="الطباعة">Printing</a>
+    <a href="rotogravure.html"        class="mob-a" data-en="Products"   data-ar="المنتجات">Products</a>
+    <a href="index.html#machinery"    class="mob-a" data-en="Machinery"  data-ar="الماكينات">Machinery</a>
+    <a href="index.html#lab"          class="mob-a" data-en="Our Lab"    data-ar="مختبرنا">Our Lab</a>
+    <a href="index.html#team"         class="mob-a" data-en="Team"       data-ar="الفريق">Team</a>
+    <a href="index.html#contact"      class="mob-a" data-en="Contact us" data-ar="تواصل معنا">Contact</a>
+  </nav>
+</div>
+
+<!-- ══════════════════════════════════════════
+     NAV
+══════════════════════════════════════════ -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
+    <a href="index.html" class="flex-shrink-0">
+      <img src="favicon.png" alt="Riopack" class="nav-logo-img h-10 w-auto" style="max-width:200px;">
+    </a>
+    <nav class="hidden lg:flex items-center gap-7">
+      <a href="index.html#about"        class="nav-a" data-en="About"     data-ar="عن الشركة">About</a>
+      <a href="index.html#rotogravure"  class="nav-a active" data-en="Printing"  data-ar="الطباعة">Printing</a>
+      <a href="rotogravure.html"        class="nav-a" data-en="Products"  data-ar="المنتجات">Products</a>
+      <a href="index.html#machinery"    class="nav-a" data-en="Machinery" data-ar="الماكينات">Machinery</a>
+      <a href="index.html#lab"          class="nav-a" data-en="Our Lab"   data-ar="مختبرنا">Our Lab</a>
+      <a href="index.html#team"         class="nav-a" data-en="Team"      data-ar="الفريق">Team</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button id="lang-toggle" onclick="toggleLang()" class="lang-btn hidden lg:inline-flex" aria-label="Toggle language">عربي</button>
+      <a href="index.html#contact" class="hidden lg:inline-flex items-center gap-2 bg-crimson text-cream font-sans font-semibold py-2.5 px-5 text-[0.7rem] tracking-[0.1em] uppercase hover:bg-crimson-dk transition-colors duration-200" style="border-radius:2px;" data-en="Contact us" data-ar="تواصل معنا">
+        Contact us
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button id="mob-open" class="nav-mob-btn lg:hidden p-1.5" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="pt-16">
+
+<!-- ══════════════════════════════════════════
+     PAGE HERO
+══════════════════════════════════════════ -->
+<section class="py-20 lg:py-28">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+    <div class="site-card-dark px-10 lg:px-16 py-14 lg:py-20 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22300%22 height=%22300%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');"></div>
+      <div class="relative z-10">
+        <div class="s-label text-crimson mb-4" data-en="Rotogravure Printing" data-ar="طباعة الروتوغرافيور">Rotogravure Printing</div>
+        <h1 class="font-serif text-cream font-light leading-tight mb-5" style="font-size:clamp(2.4rem,5vw,3.75rem);" data-en="Rotogravure Products" data-ar="منتجات الروتوغرافيور">Rotogravure Products</h1>
+        <p class="leading-relaxed" style="font-size:1.0625rem; max-width:48ch; font-weight:300; color:rgba(245,240,232,0.6);" data-en="Flexible packaging, film, and wrappers printed on high-speed rotogravure presses — serving food, cosmetics, dairy, and industrial clients across the MENA region and beyond." data-ar="آلات 8 و9 ألوان مصنوعة إيطاليًا مُتحكَّم بها بتقنية إلتروماط وبوبست، مع معدات الشحن الإلكتروستاتيكي التي تُزيل النقاط البيضاء — التغليف المرن للأغذية والأدوية والسلع الاستهلاكية.">
+          Flexible packaging, film, and wrappers printed on high-speed rotogravure presses — serving food, cosmetics, dairy, and industrial clients across the MENA region and beyond.
+        </p>
+        <div class="mt-8 flex items-center gap-2 text-sm" style="color:rgba(245,240,232,0.35);">
+          <a href="index.html" class="transition-colors hover:text-cream/65" style="color:rgba(245,240,232,0.35);" data-en="Home" data-ar="الرئيسية">Home</a>
+          <span>/</span>
+          <a href="index.html#rotogravure" class="transition-colors hover:text-cream/65" style="color:rgba(245,240,232,0.35);" data-en="Printing" data-ar="الطباعة">Printing</a>
+          <span>/</span>
+          <span style="color:rgba(245,240,232,0.65);" data-en="Rotogravure" data-ar="الروتوغرافيور">Rotogravure</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PROCESS · CAPABILITIES · STATS
+══════════════════════════════════════════ -->
+<div class="space-y-5 py-5">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+
+    <!-- A: PROCESS STRIP -->
+    <div class="site-card-dark px-8 lg:px-12 py-10">
+      <div class="s-label text-crimson mb-7" data-en="Our Process" data-ar="عمليتنا">Our Process</div>
+      <div class="relative grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
+        <div class="hidden lg:block absolute" style="top:1.15rem;left:13%;right:13%;height:1px;background:rgba(245,240,232,0.12);z-index:0;"></div>
+        <div>
+          <div class="w-9 h-9 rounded-full bg-crimson flex items-center justify-center text-cream text-xs font-semibold mb-4 relative z-10">01</div>
+          <div class="text-sm font-medium text-cream mb-1.5" data-en="Cylinder Engraving" data-ar="حفر الأسطوانات">Cylinder Engraving</div>
+          <div class="text-xs leading-relaxed" style="color:rgba(245,240,232,0.55);" data-en="Electromechanical or laser engraving of copper cylinders to micron-level depth precision." data-ar="حفر إلكتروميكانيكي أو بالليزر لأسطوانات نحاسية بدقة تصل إلى مستوى الميكرون.">Electromechanical or laser engraving of copper cylinders to micron-level depth precision.</div>
+        </div>
+        <div>
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold mb-4 relative z-10" style="border:2px solid #b71c2e;color:#b71c2e;background:rgba(16,10,4,0.88);">02</div>
+          <div class="text-sm font-medium text-cream mb-1.5" data-en="Ink &amp; Proof" data-ar="الحبر والبروفة">Ink &amp; Proof</div>
+          <div class="text-xs leading-relaxed" style="color:rgba(245,240,232,0.55);" data-en="Food-grade solvent and water-based inks mixed and proofed in our in-house colour lab." data-ar="أحبار صالحة للأغذية بمذيبات وأساس مائي يُمزج ويُختبر في مختبر الألوان الداخلي.">Food-grade solvent and water-based inks mixed and proofed in our in-house colour lab.</div>
+        </div>
+        <div>
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold mb-4 relative z-10" style="border:2px solid #b71c2e;color:#b71c2e;background:rgba(16,10,4,0.88);">03</div>
+          <div class="text-sm font-medium text-cream mb-1.5" data-en="Gravure Press Run" data-ar="تشغيل مطبعة الغرافيور">Gravure Press Run</div>
+          <div class="text-xs leading-relaxed" style="color:rgba(245,240,232,0.55);" data-en="8 &amp; 9 colour passes with Eltromat registration and electrostatic assist — zero white spots." data-ar="8 و9 طبقات ألوان مع تسجيل إلتروماط ودعم كهروستاتيكي — صفر نقاط بيضاء.">8 &amp; 9 colour passes with Eltromat registration and electrostatic assist — zero white spots.</div>
+        </div>
+        <div>
+          <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold mb-4 relative z-10" style="border:2px solid #b71c2e;color:#b71c2e;background:rgba(16,10,4,0.88);">04</div>
+          <div class="text-sm font-medium text-cream mb-1.5" data-en="Lamination &amp; Slitting" data-ar="التلبيس والتقطيع">Lamination &amp; Slitting</div>
+          <div class="text-xs leading-relaxed" style="color:rgba(245,240,232,0.55);" data-en="Nord Meccanica solventless lamination followed by C-schiavi &amp; Goebel precision slitting." data-ar="تلبيس بدون مذيب بنورد ميكانيكا ثم تقطيع دقيق بآلات C-schiavi وجوبل.">Nord Meccanica solventless lamination followed by C-schiavi &amp; Goebel precision slitting.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B: CAPABILITIES + APPLICATIONS -->
+    <div class="site-card-dark overflow-hidden">
+      <div class="grid lg:grid-cols-2 min-h-[360px]">
+        <!-- Applications (left) -->
+        <div class="px-8 lg:px-12 py-10 flex flex-col justify-between">
+          <div>
+            <div class="s-label text-crimson mb-4" data-en="Applications" data-ar="التطبيقات">Applications</div>
+            <h3 class="font-serif text-cream font-light text-xl mb-6" data-en="Flexible packaging for every need" data-ar="تغليف مرن لكل احتياج">Flexible packaging for every need</h3>
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0 mt-1.5"></div>
+                <div>
+                  <div class="text-sm font-medium text-cream" data-en="Food &amp; Dairy Flexible" data-ar="الأغذية والألبان المرنة">Food &amp; Dairy Flexible</div>
+                  <div class="text-xs mt-0.5" style="color:rgba(245,240,232,0.55);" data-en="Yogurt bands, bonbon wrappers, laminated pouches, and food-grade roll stock." data-ar="أشرطة زبادي وأغلفة حلوى وأكياس مصفحة ولفائف مرنة صالحة للأغذية.">Yogurt bands, bonbon wrappers, laminated pouches, and food-grade roll stock.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0 mt-1.5"></div>
+                <div>
+                  <div class="text-sm font-medium text-cream" data-en="Oils, Fats &amp; Spreads" data-ar="الزيوت والدهون والمدهونات">Oils, Fats &amp; Spreads</div>
+                  <div class="text-xs mt-0.5" style="color:rgba(245,240,232,0.55);" data-en="Heat-sealed butter wrappers and oil labels with grease-resistant barrier lamination." data-ar="أغلفة زبدة محكمة الإغلاق وملصقات زيت بتلبيس حاجز مقاوم للدهون.">Heat-sealed butter wrappers and oil labels with grease-resistant barrier lamination.</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0 mt-1.5"></div>
+                <div>
+                  <div class="text-sm font-medium text-cream" data-en="Cosmetics &amp; Personal Care" data-ar="مستحضرات التجميل والعناية الشخصية">Cosmetics &amp; Personal Care</div>
+                  <div class="text-xs mt-0.5" style="color:rgba(245,240,232,0.55);" data-en="High-gloss soap wrappers and cosmetic film with vibrant 8-colour metallic reproduction." data-ar="أغلفة صابون لامعة وأفلام تجميل بألوان زاهية ثمانية الألوان مع تأثيرات معدنية.">High-gloss soap wrappers and cosmetic film with vibrant 8-colour metallic reproduction.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 pt-6" style="border-top:1px solid rgba(245,240,232,0.10);">
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs px-3 py-1 rounded-full text-cream" style="border:1px solid rgba(245,240,232,0.18);" data-en="ISO 22000 Certified" data-ar="معتمد ISO 22000">ISO 22000 Certified</span>
+              <span class="text-xs px-3 py-1 rounded-full text-cream" style="border:1px solid rgba(245,240,232,0.18);" data-en="BRC Certified" data-ar="معتمد BRC">BRC Certified</span>
+              <span class="text-xs px-3 py-1 rounded-full text-cream" style="border:1px solid rgba(245,240,232,0.18);" data-en="Solventless Lamination" data-ar="تلبيس بدون مذيب">Solventless Lamination</span>
+              <span class="text-xs px-3 py-1 rounded-full text-cream" style="border:1px solid rgba(245,240,232,0.18);" data-en="Electrostatic Assist" data-ar="دعم كهروستاتيكي">Electrostatic Assist</span>
+            </div>
+          </div>
+        </div>
+        <!-- Product mosaic (right) -->
+        <div class="grid grid-cols-2">
+          <div class="overflow-hidden" style="aspect-ratio:1;"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/rio%20labanitaa.jpg" alt="Labanita Yogurt" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async"></div>
+          <div class="overflow-hidden" style="aspect-ratio:1;"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/X7l.jpg" alt="Dettol Soap Bar" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async"></div>
+          <div class="overflow-hidden" style="aspect-ratio:1;"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/4424.jpg" alt="Fern Butter" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async"></div>
+          <div class="overflow-hidden" style="aspect-ratio:1;"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/rio%20cristal.jpg" alt="Crystal Sunflower Oil" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C: STATS BAR -->
+    <div class="site-card-dark px-8 lg:px-12 py-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="font-serif text-cream font-light" style="font-size:2.25rem;line-height:1;">9</div>
+          <div class="s-label mt-2" style="color:rgba(245,240,232,0.45);" data-en="Colour Presses" data-ar="مطابع ألوان">Colour Presses</div>
+        </div>
+        <div class="text-center">
+          <div class="font-serif text-cream font-light" style="font-size:2.25rem;line-height:1;">6</div>
+          <div class="s-label mt-2" style="color:rgba(245,240,232,0.45);" data-en="Product Categories" data-ar="فئات المنتجات">Product Categories</div>
+        </div>
+        <div class="text-center">
+          <div class="font-serif text-cream font-light" style="font-size:2.25rem;line-height:1;">0</div>
+          <div class="s-label mt-2" style="color:rgba(245,240,232,0.45);" data-en="White Spots — Guaranteed" data-ar="نقاط بيضاء — مضمون">White Spots — Guaranteed</div>
+        </div>
+        <div class="text-center">
+          <div class="font-serif text-cream font-light" style="font-size:2.25rem;line-height:1;">100<span style="font-size:1.25rem;color:#b71c2e;">%</span></div>
+          <div class="s-label mt-2" style="color:rgba(245,240,232,0.45);" data-en="Solventless Lamination" data-ar="تلبيس بدون مذيب">Solventless Lamination</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CATEGORY NAV (sticky)
+══════════════════════════════════════════ -->
+<div id="cat-nav" class="sticky top-16 z-40 overflow-x-auto">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-center gap-0 whitespace-nowrap">
+      <a href="#food-packaging"  class="cat-nav-a" data-en="Food Packaging"    data-ar="تغليف الأغذية">Food Packaging</a>
+      <a href="#stiffener-board" class="cat-nav-a" data-en="Stiffener Board"   data-ar="لوح التقوية">Stiffener Board</a>
+      <a href="#cosmetics-soap"  class="cat-nav-a" data-en="Cosmetics &amp; Soap" data-ar="التجميل والصابون">Cosmetics &amp; Soap</a>
+      <a href="#pvc-extruder"    class="cat-nav-a" data-en="PVC Extruder Lines" data-ar="خطوط بثق PVC">PVC Extruder Lines</a>
+      <a href="#pe-blowing"      class="cat-nav-a" data-en="PE Blowing Film"   data-ar="أفلام نفخ PE">PE Blowing Film</a>
+      <a href="#fat-oils"        class="cat-nav-a" data-en="Fat &amp; Oils"    data-ar="الزيوت والدهون">Fat &amp; Oils</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PRODUCTS CONTENT
+══════════════════════════════════════════ -->
+<div class="space-y-6 py-8 pb-20">
+
+  <!-- ── FOOD PACKAGING ── -->
+  <section id="food-packaging" class="py-2">
+    <div class="max-w-5xl mx-auto px-4 lg:px-6">
+    <div class="site-card px-8 lg:px-12 py-10 lg:py-14">
+      <div class="mb-8 rv">
+        <div class="s-label mb-3" data-en="Food Packaging" data-ar="تغليف الأغذية">Food Packaging</div>
+        <h2 class="font-serif text-ink font-light leading-tight" style="font-size:clamp(1.7rem,3.5vw,2.5rem);" data-en="Food Packaging" data-ar="تغليف الأغذية">Food Packaging</h2>
+        <p class="text-muted text-sm leading-relaxed mt-3" style="max-width:55ch;" data-en="Rotogravure-printed flexible packaging for tea, confectionery, snacks, beverages, and dairy products using BOPP, PET, aluminium foil, and multi-layer laminates." data-ar="تغليف مرن مطبوع بالروتوغرافيور لمنتجات الألبان والحلويات والأغذية. أسطوانات مصنوعة إيطاليًا بثمانية وتسعة ألوان.">
+          Rotogravure-printed flexible packaging for tea, confectionery, snacks, beverages, and dairy products using BOPP, PET, aluminium foil, and multi-layer laminates.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 rv d1">
+        <div class="prod-card">
+          <div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/rio%20labanita12a.jpg" alt="Band Roll" loading="lazy" decoding="async"></div>
+          <div class="prod-card-body"><div class="prod-card-name">Band Roll</div></div>
+        </div>
+        <div class="prod-card">
+          <div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/rio%20slaa.jpg" alt="Saula Bonbon" loading="lazy" decoding="async"></div>
+          <div class="prod-card-body"><div class="prod-card-name">Saula Bonbon</div></div>
+        </div>
+        <div class="prod-card">
+          <div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/rio%20labanitaa.jpg" alt="Labanita Yogurt" loading="lazy" decoding="async"></div>
+          <div class="prod-card-body"><div class="prod-card-name">Labanita Yogurt</div></div>
+        </div>
+      </div>
+    </div><!-- /site-card -->
+    </div>
+  </section>
+
+  <!-- ── STIFFENER BOARD ── -->
+  <section id="stiffener-board" class="py-2">
+    <div class="max-w-5xl mx-auto px-4 lg:px-6">
+    <div class="site-card px-8 lg:px-12 py-10 lg:py-14">
+      <div class="mb-8 rv">
+        <div class="s-label mb-3" data-en="Stiffener Board" data-ar="لوح التقوية">Stiffener Board</div>
+        <h2 class="font-serif text-ink font-light leading-tight" style="font-size:clamp(1.7rem,3.5vw,2.5rem);" data-en="Stiffener Board" data-ar="لوح التقوية">Stiffener Board</h2>
+        <p class="text-muted text-sm leading-relaxed mt-3" style="max-width:55ch;" data-en="Antifungi and anti-mold treated boards used as stiffeners inside packaging to maintain structural integrity and protect contents." data-ar="ألواح تقوية مطبوعة بالروتوغرافيور لتغليف الملابس والنسيج.">
+          Antifungi and anti-mold treated boards used as stiffeners inside packaging to maintain structural integrity and protect contents.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 rv d1">
+        <div class="prod-card">
+          <div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/portfolio/Stiffener%20Board.jpeg" alt="Stiffener Board" loading="lazy" decoding="async"></div>
+          <div class="prod-card-body"><div class="prod-card-name">Stiffener Board</div></div>
+        </div>
+        <div class="prod-card">
+          <div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/portfolio/img-3.jpeg" alt="Stiffener Board" loading="lazy" decoding="async"></div>
+          <div class="prod-card-body"><div class="prod-card-name">Stiffener Board</div></div>
+        </div>
+        <div class="prod-card">
+          <div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/portfolio/42421.jpg" alt="Stiffener Board" loading="lazy" decoding="async"></div>
+          <div class="prod-card-body"><div class="prod-card-name">Stiffener Board</div></div>
+        </div>
+      </div>
+    </div><!-- /site-card -->
+    </div>
+  </section>
+
+  <!-- ── COSMETICS & SOAP WRAPPERS ── -->
+  <section id="cosmetics-soap" class="py-2">
+    <div class="max-w-5xl mx-auto px-4 lg:px-6">
+    <div class="site-card px-8 lg:px-12 py-10 lg:py-14">
+      <div class="mb-8 rv">
+        <div class="s-label mb-3" data-en="Cosmetics &amp; Soap" data-ar="أغلفة التجميل والصابون">Cosmetics &amp; Soap</div>
+        <h2 class="font-serif text-ink font-light leading-tight" style="font-size:clamp(1.7rem,3.5vw,2.5rem);" data-en="Cosmetics &amp; Soap Wrappers" data-ar="أغلفة التجميل والصابون">Cosmetics &amp; Soap Wrappers</h2>
+        <p class="text-muted text-sm leading-relaxed mt-3" style="max-width:55ch;" data-en="Multi-layer flexible wrappers for soap bars, cosmetic products, and personal care items. Produced using rotogravure printing with precise color registration." data-ar="أغلفة صابون ومستحضرات تجميل ذات لمعة عالية مع تأثيرات لون معدنية حيوية.">
+          Multi-layer flexible wrappers for soap bars, cosmetic products, and personal care items. Produced using rotogravure printing with precise color registration.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 rv d1">
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/X7l.jpg" alt="Dettol Soap Bar" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Dettol Soap Bar</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/product-23.jpg" alt="Duru" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Duru</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/80.jpg" alt="Rivoli" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Rivoli</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/_جوي%20165%20جرام-550x550w.jpg" alt="Joy" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Joy</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/Untitled.jpg" alt="Savannah Classic" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Savannah Classic</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/51LL.jpg" alt="Camay" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Camay</div></div></div>
+      </div>
+    </div><!-- /site-card -->
+    </div>
+  </section>
+
+  <!-- ── PVC EXTRUDER LINES ── -->
+  <section id="pvc-extruder" class="py-2">
+    <div class="max-w-5xl mx-auto px-4 lg:px-6">
+    <div class="site-card px-8 lg:px-12 py-10 lg:py-14">
+      <div class="mb-8 rv">
+        <div class="s-label mb-3" data-en="PVC Extruder Lines" data-ar="خطوط بثق PVC">PVC Extruder Lines</div>
+        <h2 class="font-serif text-ink font-light leading-tight" style="font-size:clamp(1.7rem,3.5vw,2.5rem);" data-en="PVC Extruder Lines" data-ar="خطوط بثق PVC">PVC Extruder Lines</h2>
+        <p class="text-muted text-sm leading-relaxed mt-3" style="max-width:55ch;" data-en="Transparent, colored, and metalized PVC film produced in thicknesses from 8 to 150 microns for a wide range of packaging applications including shrink sleeves and lamination substrates." data-ar="أنابيب بثق PVC وأغشية للتطبيقات الصناعية والبناء.">
+          Transparent, colored, and metalized PVC film produced in thicknesses from 8 to 150 microns for a wide range of packaging applications including shrink sleeves and lamination substrates.
+        </p>
+      </div>
+      <div class="rv d1 specs-card">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-sm text-ink-soft">
+          <div><div class="font-semibold text-ink mb-1">Transparent PVC Film</div><div class="text-muted">8–150 micron range</div></div>
+          <div><div class="font-semibold text-ink mb-1">Colored PVC Film</div><div class="text-muted">Custom color formulations</div></div>
+          <div><div class="font-semibold text-ink mb-1">Metalized PVC Film</div><div class="text-muted">High barrier properties</div></div>
+          <div><div class="font-semibold text-ink mb-1">Shrink Sleeve Film</div><div class="text-muted">Full-body container labeling</div></div>
+          <div><div class="font-semibold text-ink mb-1">Lamination Substrate</div><div class="text-muted">For multi-layer structures</div></div>
+          <div><div class="font-semibold text-ink mb-1">General Packaging Film</div><div class="text-muted">Rolls and sheets</div></div>
+        </div>
+      </div>
+    </div><!-- /site-card -->
+    </div>
+  </section>
+
+  <!-- ── POLYETHYLENE BLOWING FILM LINES ── -->
+  <section id="pe-blowing" class="py-2">
+    <div class="max-w-5xl mx-auto px-4 lg:px-6">
+    <div class="site-card px-8 lg:px-12 py-10 lg:py-14">
+      <div class="mb-8 rv">
+        <div class="s-label mb-3" data-en="PE Blowing Film" data-ar="خطوط نفخ أفلام PE">PE Blowing Film</div>
+        <h2 class="font-serif text-ink font-light leading-tight" style="font-size:clamp(1.7rem,3.5vw,2.5rem);" data-en="Polyethylene Blowing Film Lines" data-ar="خطوط نفخ أفلام PE">Polyethylene Blowing Film Lines</h2>
+        <p class="text-muted text-sm leading-relaxed mt-3" style="max-width:55ch;" data-en="Blown polyethylene film in rolls and sheets for flow wrapping, ice cream cone production, and general flexible packaging. Available in LDPE, LLDPE, and HDPE grades." data-ar="أفلام PE المنفوخة للتغليف والزراعة والتطبيقات الصناعية.">
+          Blown polyethylene film in rolls and sheets for flow wrapping, ice cream cone production, and general flexible packaging. Available in LDPE, LLDPE, and HDPE grades.
+        </p>
+      </div>
+      <div class="rv d1 specs-card">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-sm text-ink-soft">
+          <div><div class="font-semibold text-ink mb-1">Flow Wrap Film</div><div class="text-muted">For horizontal form-fill-seal machines</div></div>
+          <div><div class="font-semibold text-ink mb-1">Ice Cream Cone Wrap</div><div class="text-muted">Food-grade LDPE</div></div>
+          <div><div class="font-semibold text-ink mb-1">General Packaging Film</div><div class="text-muted">Rolls and sheet formats</div></div>
+          <div><div class="font-semibold text-ink mb-1">LDPE Film</div><div class="text-muted">Low density, flexible</div></div>
+          <div><div class="font-semibold text-ink mb-1">LLDPE Film</div><div class="text-muted">Enhanced puncture resistance</div></div>
+          <div><div class="font-semibold text-ink mb-1">HDPE Film</div><div class="text-muted">High-stiffness applications</div></div>
+        </div>
+      </div>
+    </div><!-- /site-card -->
+    </div>
+  </section>
+
+  <!-- ── FAT & OILS WRAPPERS ── -->
+  <section id="fat-oils" class="py-2">
+    <div class="max-w-5xl mx-auto px-4 lg:px-6">
+    <div class="site-card px-8 lg:px-12 py-10 lg:py-14">
+      <div class="mb-8 rv">
+        <div class="s-label mb-3" data-en="Fat &amp; Oils" data-ar="أغلفة الزيوت والدهون">Fat &amp; Oils</div>
+        <h2 class="font-serif text-ink font-light leading-tight" style="font-size:clamp(1.7rem,3.5vw,2.5rem);" data-en="Fat &amp; Oils Wrappers" data-ar="أغلفة الزيوت والدهون">Fat &amp; Oils Wrappers</h2>
+        <p class="text-muted text-sm leading-relaxed mt-3" style="max-width:55ch;" data-en="Paraffin-coated or chemically treated paper and film wrappers for butter, margarine, vegetable fat, and edible oils. Grease-resistant with food-safe printing inks." data-ar="أغلفة زبدة وملصقات زيت محكمة الإغلاق بتلبيس حاجز مقاوم للدهون.">
+          Paraffin-coated or chemically treated paper and film wrappers for butter, margarine, vegetable fat, and edible oils. Grease-resistant with food-safe printing inks.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 rv d1">
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/4424.jpg" alt="Fern Butter" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Fern Butter</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/1121.jpg" alt="Amira Butter" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Amira Butter</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/454245.jpg" alt="Ganna Butter" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Ganna Butter</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/4121.jpg" alt="Rawabi Butter" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Rawabi Butter</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/riopack.jpg" alt="Crystal Butter" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Crystal Butter</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/rio.jpg" alt="Label Crystal Oil" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Label Crystal (Oil)</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/rio%20cristal.jpg" alt="Crystal Sunflower Oil" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Crystal Sunflower Oil</div></div></div>
+        <div class="prod-card"><div class="prod-card-img"><img src="https://riopack.com/thumbs/600x400//photos/shares/products/rio%20halaa.jpg" alt="Label Hala Oil" loading="lazy" decoding="async"></div><div class="prod-card-body"><div class="prod-card-name">Label Hala Oil</div></div></div>
+      </div>
+    </div><!-- /site-card -->
+    </div>
+  </section>
+
+</div>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="py-2 pb-8">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card-dark px-10 lg:px-14 py-12 lg:py-16">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-cream/10">
+      <div class="lg:col-span-2">
+        <div class="mb-5">
+          <img src="logo.png" alt="Riopack" class="h-10 w-auto" style="filter:brightness(0) invert(1); max-width:200px;">
+        </div>
+        <p class="text-cream/45 text-sm leading-relaxed" style="max-width:30ch;">
+          Rotogravure printing, cutting, converting paper films of all kinds: rolls, sheets, printing and lining of paper, aluminium, and film.
+        </p>
+      </div>
+      <div>
+        <div class="text-[0.6rem] tracking-[0.18em] uppercase text-cream/35 mb-5" data-en="Navigation" data-ar="التنقل">Navigation</div>
+        <ul class="space-y-3">
+          <li><a href="index.html#about"        class="ft-a" data-en="About Riopack"        data-ar="عن ريوباك">About Riopack</a></li>
+          <li><a href="index.html#rotogravure"  class="ft-a" data-en="Rotogravure"          data-ar="الروتوغرافيور">Rotogravure</a></li>
+          <li><a href="index.html#offset"       class="ft-a" data-en="Offset"               data-ar="الأوفست">Offset</a></li>
+          <li><a href="rotogravure.html"        class="ft-a" style="color:rgba(245,240,232,0.85);" data-en="Rotogravure products" data-ar="منتجات الروتوغرافيور">Rotogravure products</a></li>
+          <li><a href="offset.html"             class="ft-a" data-en="Offset products"      data-ar="منتجات الأوفست">Offset products</a></li>
+          <li><a href="index.html#machinery"    class="ft-a" data-en="Machinery"            data-ar="الماكينات">Machinery</a></li>
+          <li><a href="index.html#lab"          class="ft-a" data-en="Our lab"              data-ar="مختبرنا">Our lab</a></li>
+          <li><a href="index.html#contact"      class="ft-a" data-en="Contact us"           data-ar="تواصل معنا">Contact us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-[0.6rem] tracking-[0.18em] uppercase text-cream/35 mb-5" data-en="Contact" data-ar="تواصل">Contact</div>
+        <address class="not-italic space-y-3 text-sm text-cream/55">
+          <p class="leading-relaxed" data-en-html="Third Industrial Zone (A2),<br>10th of Ramadan City,<br>Charkia, Egypt" data-ar-html="المنطقة الصناعية الثالثة (A2)،<br>مدينة العاشر من رمضان،<br>الشرقية، مصر">Third Industrial Zone (A2),<br>10th of Ramadan City,<br>Charkia, Egypt</p>
+          <p><a href="tel:+20554413197" class="hover:text-cream transition-colors">(+20) 55 4413 197</a></p>
+          <p><a href="mailto:sales@riopack.com" class="hover:text-cream transition-colors">sales@riopack.com</a></p>
+        </address>
+      </div>
+    </div>
+
+    <div class="pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <p class="text-cream/25 text-xs" data-en="© 2024 Riopack Co. All rights reserved." data-ar="© 2024 شركة ريوباك. جميع الحقوق محفوظة.">&copy; 2024 Riopack Co. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="index.html"         class="text-cream/25 text-xs hover:text-cream/50 transition-colors" data-en="Home"     data-ar="الرئيسية">Home</a>
+        <a href="rotogravure.html"   class="text-cream/25 text-xs hover:text-cream/50 transition-colors" data-en="Products" data-ar="المنتجات">Products</a>
+        <a href="index.html#contact" class="text-cream/25 text-xs hover:text-cream/50 transition-colors" data-en="Contact"  data-ar="تواصل">Contact</a>
+      </div>
+    </div>
+
+  </div><!-- /site-card-dark -->
+  </div>
+</footer>
+
+<script>
+  // ── Nav solid on scroll ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('solid', window.scrollY > 24);
+  }, { passive: true });
+
+  // ── Mobile menu ──
+  const mobMenu  = document.getElementById('mob-menu');
+  const mobOpen  = document.getElementById('mob-open');
+  const mobClose = document.getElementById('mob-close');
+  mobOpen.addEventListener('click', () => { mobMenu.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  mobClose.addEventListener('click', closeMob);
+  mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMob));
+  function closeMob() { mobMenu.classList.remove('open'); document.body.style.overflow = ''; }
+
+  // ── Scroll reveal ──
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -24px 0px' });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // ── Category nav active state on scroll ──
+  const catLinks = document.querySelectorAll('.cat-nav-a');
+  const catSections = ['food-packaging','stiffener-board','cosmetics-soap','pvc-extruder','pe-blowing','fat-oils']
+    .map(id => document.getElementById(id)).filter(Boolean);
+  window.addEventListener('scroll', () => {
+    let current = '';
+    catSections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 160) current = sec.id; });
+    catLinks.forEach(a => {
+      const active = a.getAttribute('href') === '#' + current;
+      a.classList.toggle('active', active);
+    });
+  }, { passive: true });
+
+  // ── Language toggle ──
+  function toggleLang() {
+    const current = document.documentElement.lang || 'en';
+    setLang(current === 'ar' ? 'en' : 'ar');
+  }
+
+  function setLang(lang) {
+    const isAr = lang === 'ar';
+    document.documentElement.lang = lang;
+    document.documentElement.dir  = isAr ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = isAr ? el.dataset.ar : el.dataset.en;
+      if (val !== undefined) {
+        const svg = el.querySelector('svg');
+        if (svg) {
+          const textNodes = [...el.childNodes].filter(n => n.nodeType === 3);
+          let set = false;
+          textNodes.forEach(n => {
+            if (!set && n.textContent.trim()) { n.textContent = val + ' '; set = true; }
+            else { n.textContent = ''; }
+          });
+        } else {
+          el.textContent = val;
+        }
+      }
+    });
+
+    document.querySelectorAll('[data-en-html]').forEach(el => {
+      el.innerHTML = isAr ? el.dataset.arHtml : el.dataset.enHtml;
+    });
+
+    const btn = document.getElementById('lang-toggle');
+    if (btn) btn.textContent = isAr ? 'EN' : 'عربي';
+
+    const navLogo = document.querySelector('.nav-logo-img');
+    if (navLogo) navLogo.src = isAr ? 'logo.png' : 'favicon.png';
+
+    try { localStorage.setItem('riopack-lang', lang); } catch(e) {}
+  }
+
+  // Restore saved language on load
+  try {
+    const saved = localStorage.getItem('riopack-lang');
+    if (saved === 'ar') setLang('ar');
+  } catch(e) {}
+
+  // ── Scroll-driven video background (desktop only) ──
+  (function() {
+    if (window.matchMedia('(max-width: 767px)').matches) return;
+    const vid    = document.getElementById('bg-video');
+    const scrim  = document.getElementById('video-scrim');
+    let target   = 0;
+    let current  = 0;
+    let rafId    = null;
+    let stopTimer = null;
+    let moving   = false;
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function tick() {
+      if (!vid.duration) { rafId = requestAnimationFrame(tick); return; }
+      const factor = moving ? 0.18 : 0.25;
+      current = lerp(current, target, factor);
+      const gap = Math.abs(target - current);
+      if (gap > 0.008) {
+        vid.currentTime = current;
+        rafId = requestAnimationFrame(tick);
+      } else {
+        vid.currentTime = target;
+        current = target;
+        rafId = null;
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      const max = document.body.scrollHeight - window.innerHeight;
+      if (!vid.duration || max <= 0) return;
+      target = Math.min(window.scrollY / max, 1) * vid.duration;
+      moving = true;
+      scrim.classList.add('active');
+      clearTimeout(stopTimer);
+      stopTimer = setTimeout(() => {
+        moving = false;
+        scrim.classList.remove('active');
+        vid.currentTime = target;
+        current = target;
+        rafId = null;
+      }, 130);
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    }, { passive: true });
+
+    vid.addEventListener('loadedmetadata', () => { vid.pause(); vid.currentTime = 0; current = 0; target = 0; });
+    vid.addEventListener('play', () => vid.pause());
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riopack: Rotogravure &amp; Offset Printing Specialist since 1926</title>
+  <meta name="description" content="Riopack Co., Egypt's leading rotogravure and offset printing specialist since 1926. Precision in printing, perfection in packaging.">
+  <meta property="og:title" content="Riopack: Precision in printing, perfection in packaging">
+  <meta property="og:description" content="100+ years of rotogravure and offset printing expertise from Egypt to the world.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://riopack.com">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,800;1,300;1,400&family=Jost:wght@300;400;500;600&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream:        '#f5f0e8',
+            'cream-mid':  '#ede5d8',
+            'cream-deep': '#e4dace',
+            ink:          '#18120a',
+            'ink-soft':   '#3b2f1e',
+            muted:        '#8a7a68',
+            crimson:      '#b71c2e',
+            'crimson-dk': '#8d1222',
+            border:       '#d9d0c3',
+          },
+          fontFamily: {
+            serif: ['Spectral', 'Georgia', 'serif'],
+            sans:  ['Jost', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Jost', system-ui, sans-serif;
+      background: #0d0a07;
+      color: #18120a;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ── Scroll-driven video background ── */
+    #video-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+    #video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      will-change: transform;
+    }
+    /* Cinematic dark overlay over video */
+    #video-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 120% 100% at 50% 0%,   transparent 40%, rgba(4,2,0,0.55) 100%),
+        radial-gradient(ellipse 100% 80%  at 0%   50%,  rgba(4,2,0,0.40) 0%, transparent 70%),
+        rgba(8,5,2,0.22);
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* Scrim — darkens during fast scroll to hide seek jank */
+    #video-scrim {
+      position: absolute;
+      inset: 0;
+      background: rgba(8,5,2,0);
+      transition: background 0.55s cubic-bezier(0.16,1,0.3,1);
+      pointer-events: none;
+      z-index: 3;
+    }
+    #video-scrim.active { background: rgba(8,5,2,0.50); }
+
+    /* ── All sections transparent — video shows in gaps ── */
+    #about, #printing, #products, #machinery, #lab,
+    #certifications, #team, #contact,
+    footer { background: transparent !important; }
+
+    /* ── Floating section cards ── */
+    .site-card {
+      background: rgba(245,240,232,0.91);
+      backdrop-filter: blur(32px) saturate(1.7);
+      -webkit-backdrop-filter: blur(32px) saturate(1.7);
+      border: 1px solid rgba(255,255,255,0.52);
+      border-radius: 8px;
+      box-shadow:
+        0 2px 6px rgba(0,0,0,0.10),
+        0 16px 48px rgba(0,0,0,0.28),
+        0 56px 100px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.68);
+      overflow: hidden;
+    }
+    .site-card-dark {
+      background: rgba(16,10,4,0.88);
+      backdrop-filter: blur(32px) saturate(1.4);
+      -webkit-backdrop-filter: blur(32px) saturate(1.4);
+      border: 1px solid rgba(245,240,232,0.10);
+      border-radius: 8px;
+      box-shadow:
+        0 2px 6px rgba(0,0,0,0.22),
+        0 16px 48px rgba(0,0,0,0.50),
+        0 56px 100px rgba(0,0,0,0.38),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+
+
+/* ── Grain overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 180px;
+    }
+
+    /* ── Nav ── */
+    #nav {
+      background: rgba(245,240,232,0.06);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid rgba(245,240,232,0.10);
+      transition: background 0.45s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 0.45s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.45s cubic-bezier(0.16,1,0.3,1);
+    }
+    #nav.solid {
+      background: rgba(245,240,232,0.82);
+      backdrop-filter: blur(28px) saturate(1.8);
+      -webkit-backdrop-filter: blur(28px) saturate(1.8);
+      border-bottom: 1px solid rgba(217,208,195,0.55);
+      box-shadow: 0 1px 0 rgba(217,208,195,0.4), 0 8px 32px rgba(24,18,10,0.07);
+    }
+
+    /* ── Nav link ── */
+    .nav-a {
+      position: relative;
+      color: rgba(245,240,232,0.82);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    #nav.solid .nav-a { color: #3b2f1e; }
+    .nav-a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #b71c2e;
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav-a:hover { color: #b71c2e; }
+    .nav-a:hover::after { width: 100%; }
+
+    /* ── Nav dropdown ── */
+    .nav-dropdown { position: relative; }
+    /* Invisible bridge — fills the gap so moving cursor to menu keeps :hover active */
+    .nav-dropdown::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: -16px;
+      right: -16px;
+      height: 16px;
+    }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      min-width: 192px;
+      background: rgba(245,240,232,0.97);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border: 1px solid rgba(24,18,10,0.10);
+      border-radius: 4px;
+      box-shadow: 0 8px 28px rgba(24,18,10,0.14);
+      padding: 0.4rem 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .nav-dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      background: rgba(245,240,232,0.97);
+      border-left: 1px solid rgba(24,18,10,0.10);
+      border-top: 1px solid rgba(24,18,10,0.10);
+      transform: translateX(-50%) rotate(45deg);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-item {
+      display: block;
+      padding: 0.55rem 1.1rem;
+      color: #3b2f1e;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.18s ease, background 0.18s ease;
+    }
+    .nav-dropdown-item:hover {
+      color: #b71c2e;
+      background: rgba(183,28,46,0.05);
+    }
+
+    /* Nav logo + hamburger */
+    .nav-logo-img {
+      filter: brightness(0) invert(1);
+      transition: filter 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    #nav.solid .nav-logo-img { filter: none; }
+    .nav-mob-btn {
+      color: rgba(245,240,232,0.85);
+      transition: color 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    #nav.solid .nav-mob-btn { color: #18120a; }
+
+    /* ── Mobile menu ── */
+    #mob-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(245,240,232,0.88);
+      backdrop-filter: blur(36px) saturate(1.6);
+      -webkit-backdrop-filter: blur(36px) saturate(1.6);
+      z-index: 300;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.25rem;
+    }
+    #mob-menu.open { display: flex; }
+
+    /* ── Hero ── */
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.6; transform: scaleY(1); }
+      50%      { opacity: 1;   transform: scaleY(1.15); }
+    }
+
+    /* ── Section label ── */
+    .s-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #b71c2e;
+    }
+
+    /* ── Reveal ── */
+    .rv {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.72s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.72s cubic-bezier(0.16,1,0.3,1);
+    }
+    .rv.in { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.10s; }
+    .d2 { transition-delay: 0.20s; }
+    .d3 { transition-delay: 0.30s; }
+    .d4 { transition-delay: 0.40s; }
+    .d5 { transition-delay: 0.50s; }
+
+    /* ── Buttons ── */
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #b71c2e;
+      color: #f5f0e8;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.875rem 1.75rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.14s ease;
+      text-decoration: none;
+    }
+    .btn-red:hover  { background: #8d1222; }
+    .btn-red:active { transform: scale(0.98); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(245,240,232,0.08);
+      backdrop-filter: blur(12px) saturate(1.3);
+      -webkit-backdrop-filter: blur(12px) saturate(1.3);
+      color: #f5f0e8;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.875rem 1.75rem;
+      border: 1px solid rgba(245,240,232,0.35);
+      box-shadow: inset 0 1px 0 rgba(245,240,232,0.12);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.14s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-ghost:hover  {
+      background: rgba(245,240,232,0.16);
+      border-color: rgba(245,240,232,0.72);
+      box-shadow: inset 0 1px 0 rgba(245,240,232,0.2), 0 4px 20px rgba(24,18,10,0.15);
+    }
+    .btn-ghost:active { transform: scale(0.98); }
+
+    .btn-ghost-dk {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: #18120a;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.875rem 1.75rem;
+      border: 1px solid rgba(24,18,10,0.35);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.14s ease;
+      text-decoration: none;
+    }
+    .btn-ghost-dk:hover  { background: rgba(24,18,10,0.06); border-color: rgba(24,18,10,0.65); }
+    .btn-ghost-dk:active { transform: scale(0.98); }
+
+    /* ── Product cards ── */
+    .pcard {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .pcard img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      transition: transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .pcard:hover img { transform: scale(1.045); }
+    .pcard-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+        rgba(24,18,10,0.88) 0%,
+        rgba(24,18,10,0.30) 55%,
+        transparent 100%
+      );
+    }
+    .pcard-body {
+      position: absolute;
+      inset: 0;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .pcard-num {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+      margin-bottom: 0.4rem;
+    }
+    .pcard-title {
+      font-family: 'Spectral', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #f5f0e8;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+    }
+    .pcard-desc {
+      font-size: 0.8125rem;
+      color: rgba(245,240,232,0.62);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+    .pcard-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #f5f0e8;
+      background: rgba(245,240,232,0.10);
+      backdrop-filter: blur(12px) saturate(1.3);
+      -webkit-backdrop-filter: blur(12px) saturate(1.3);
+      border: 1px solid rgba(245,240,232,0.32);
+      box-shadow: inset 0 1px 0 rgba(245,240,232,0.15);
+      padding: 0.35rem 0.85rem;
+      border-radius: 2px;
+      transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      align-self: flex-start;
+    }
+    .pcard-link:hover {
+      background: rgba(245,240,232,0.22);
+      border-color: rgba(245,240,232,0.62);
+      box-shadow: inset 0 1px 0 rgba(245,240,232,0.25), 0 4px 16px rgba(24,18,10,0.2);
+    }
+
+    /* ── Sector cards ── */
+    .sector-img {
+      overflow: hidden;
+    }
+    .sector-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .sector-img:hover img { transform: scale(1.03); }
+
+    /* ── Machinery list ── */
+    .mitem {
+      border-top: 1px solid rgba(245,240,232,0.10);
+      padding: 1.375rem 0;
+    }
+    .mitem:last-child { border-bottom: 1px solid rgba(245,240,232,0.10); }
+
+    /* ── Marquee ── */
+    @keyframes scroll-left {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    /* Fade edges on marquee containers */
+    .marquee-fade {
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+              mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .marquee-inner {
+      display: flex;
+      width: max-content;
+      animation: scroll-left 30s linear infinite;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+    
+
+    /* ── Cert badges ── */
+    .cert {
+      background: rgba(255,255,255,0.50);
+      backdrop-filter: blur(16px) saturate(1.5);
+      -webkit-backdrop-filter: blur(16px) saturate(1.5);
+      border: 1px solid rgba(245,240,232,0.88);
+      box-shadow: 0 4px 24px rgba(24,18,10,0.06),
+                  inset 0 1px 0 rgba(255,255,255,0.72);
+      transition: box-shadow 0.28s ease, transform 0.28s ease;
+    }
+    .cert:hover {
+      box-shadow: 0 12px 36px rgba(24,18,10,0.10),
+                  0 2px 8px rgba(183,28,46,0.05),
+                  inset 0 1px 0 rgba(255,255,255,0.82);
+      transform: translateY(-3px);
+    }
+
+    /* ── Team cards ── */
+    .tcard {
+      border-top: 1px solid rgba(217,208,195,0.6);
+      padding-top: 1.5rem;
+    }
+
+    /* ── Glass utility ── */
+    .glass-light {
+      background: rgba(255,255,255,0.48);
+      backdrop-filter: blur(18px) saturate(1.5);
+      -webkit-backdrop-filter: blur(18px) saturate(1.5);
+      border: 1px solid rgba(245,240,232,0.88);
+      box-shadow: 0 8px 32px rgba(24,18,10,0.08),
+                  inset 0 1px 0 rgba(255,255,255,0.70);
+    }
+    .glass-dark {
+      background: rgba(24,18,10,0.52);
+      backdrop-filter: blur(18px) saturate(1.3);
+      -webkit-backdrop-filter: blur(18px) saturate(1.3);
+      border: 1px solid rgba(245,240,232,0.10);
+      box-shadow: 0 8px 32px rgba(24,18,10,0.25),
+                  inset 0 1px 0 rgba(245,240,232,0.06);
+    }
+
+    /* ── Form inputs ── */
+    .finput {
+      width: 100%;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(10px) saturate(1.4);
+      -webkit-backdrop-filter: blur(10px) saturate(1.4);
+      border: 1px solid rgba(217,208,195,0.75);
+      box-shadow: inset 0 1px 3px rgba(24,18,10,0.04),
+                  0 1px 0 rgba(255,255,255,0.65);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9375rem;
+      color: #18120a;
+      padding: 0.8125rem 1rem;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .finput::placeholder { color: #b5a898; }
+    .finput:focus {
+      background: rgba(255,255,255,0.78);
+      border-color: #b71c2e;
+      box-shadow: 0 0 0 3px rgba(183,28,46,0.10),
+                  inset 0 1px 3px rgba(24,18,10,0.03);
+    }
+
+    /* ── Hero cert tiles ── */
+    a.cert-hero-card { text-decoration: none; }
+    .cert-hero-card {
+      background: rgba(245,240,232,0.07);
+      backdrop-filter: blur(22px) saturate(1.5);
+      -webkit-backdrop-filter: blur(22px) saturate(1.5);
+      border: 1px solid rgba(245,240,232,0.13);
+      border-radius: 4px;
+      padding: 0.7rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      transition: transform 0.28s cubic-bezier(0.16,1,0.3,1),
+                  background 0.28s ease,
+                  border-color 0.28s ease,
+                  box-shadow 0.28s ease;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.22),
+                  inset 0 1px 0 rgba(245,240,232,0.08);
+      cursor: default;
+    }
+    .cert-hero-card:hover {
+      transform: translateY(-4px);
+      background: rgba(245,240,232,0.13);
+      border-color: rgba(245,240,232,0.28);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.35),
+                  0 2px 8px rgba(183,28,46,0.06),
+                  inset 0 1px 0 rgba(245,240,232,0.14);
+    }
+    .cert-hero-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.45);
+      white-space: nowrap;
+    }
+    /* Hide scrollbar on cert row (mobile) */
+    .cert-hero-row { scrollbar-width: none; -ms-overflow-style: none; }
+    .cert-hero-row::-webkit-scrollbar { display: none; }
+
+    /* ── Rotating ring ── */
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .ring-spin { animation: spin-slow 22s linear infinite; }
+
+    /* ── Tag chips ── */
+    .chip {
+      font-size: 0.8125rem;
+      color: #3b2f1e;
+      background: rgba(255,255,255,0.42);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(217,208,195,0.72);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+      padding: 0.4rem 0.875rem;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+      cursor: default;
+    }
+    .chip:hover {
+      background: rgba(255,255,255,0.65);
+      border-color: #b71c2e;
+      color: #b71c2e;
+    }
+
+    /* ── Map ── */
+    .map-wrap { overflow: hidden; border-radius: 2px; }
+    .map-wrap iframe { display: block; }
+
+    /* ── Footer link ── */
+    .ft-a {
+      color: rgba(245,240,232,0.55);
+      font-size: 0.875rem;
+      transition: color 0.2s ease;
+    }
+    .ft-a:hover { color: #f5f0e8; }
+
+    /* ── Language toggle button ── */
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.65rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      border: 1px solid rgba(245,240,232,0.30);
+      color: rgba(245,240,232,0.80);
+      background: transparent;
+      font-family: 'Jost', 'Cairo', system-ui, sans-serif;
+    }
+    #nav.solid .lang-btn {
+      border-color: rgba(59,47,30,0.35);
+      color: #3b2f1e;
+    }
+    .lang-btn:hover {
+      background: rgba(183,28,46,0.12);
+      border-color: #b71c2e;
+      color: #b71c2e;
+    }
+
+    /* ── RTL / Arabic support ── */
+    html[dir="rtl"] body,
+    html[dir="rtl"] .font-sans,
+    html[dir="rtl"] input,
+    html[dir="rtl"] textarea,
+    html[dir="rtl"] button,
+    html[dir="rtl"] label {
+      font-family: 'Cairo', system-ui, sans-serif;
+    }
+    html[dir="rtl"] h1,
+    html[dir="rtl"] h2,
+    html[dir="rtl"] h3,
+    html[dir="rtl"] .font-serif {
+      font-family: 'Cairo', Georgia, serif;
+    }
+    html[dir="rtl"] .s-label,
+    html[dir="rtl"] .nav-a,
+    html[dir="rtl"] .btn-red,
+    html[dir="rtl"] .btn-ghost,
+    html[dir="rtl"] .pcard-num,
+    html[dir="rtl"] .pcard-link { letter-spacing: 0; }
+    html[dir="rtl"] .marquee-inner { animation-direction: reverse; }
+    /* Hero carousel is logo-only — force LTR on both the overflow container and inner track
+       so RTL page direction doesn't shift the initial scroll position to the far-right end */
+    .marquee-fade, .hero-marquee-inner { direction: ltr; }
+    html[dir="rtl"] .nav-a::after { left: auto; right: 0; }
+
+    /* ── Hero RTL — flip side panel to left, flip gradient ── */
+    html[dir="rtl"] #hero-side-panel {
+      right: auto !important;
+      left: 3rem;
+    }
+    @media (min-width: 1280px) {
+      html[dir="rtl"] #hero-side-panel { left: 5rem; }
+    }
+    html[dir="rtl"] #hero-overlay {
+      background: linear-gradient(to left, rgba(10,7,4,0.78) 0%, rgba(10,7,4,0.52) 55%, rgba(10,7,4,0.22) 100%) !important;
+    }
+
+    /* ══════════════════════════════════════════
+       MOBILE — max-width 767px
+    ══════════════════════════════════════════ */
+    @media (max-width: 767px) {
+      /* ── Video → poster on mobile ── */
+      #video-bg video { display: none; }
+      #video-bg { background: url('poster.jpg') center / cover no-repeat; }
+
+      /* ── Section spacing ── */
+      section[id], footer {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+      }
+      section[id] > div:first-child,
+      footer > div:first-child {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+
+      /* ── Card padding ── */
+      .site-card, .site-card-dark {
+        padding: 1.5rem 1.25rem !important;
+        border-radius: 6px;
+      }
+
+      /* ── All grids collapse to 1 col ── */
+      .grid.lg\\:grid-cols-2,
+      .grid.lg\\:grid-cols-3,
+      .grid.lg\\:grid-cols-4,
+      .grid.lg\\:grid-cols-5 { grid-template-columns: 1fr !important; }
+      .grid.sm\\:grid-cols-2 { grid-template-columns: 1fr 1fr; }
+
+      /* ── Hero ── */
+      #hero .max-w-\\[38rem\\] { max-width: 100%; }
+      #hero h1 { font-size: clamp(1.55rem, 7vw, 2.4rem) !important; }
+      #hero p   { max-width: 100% !important; font-size: 0.9375rem !important; }
+      /* hero marquee glass strip — faster on mobile */
+      #hero .hero-marquee-inner { animation-duration: 20s; }
+
+      /* ── About — credential card ── */
+      /* Reflow out of absolute so it doesn't overflow on mobile */
+      #about .relative > .absolute.-bottom-6 {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        margin-top: 1rem;
+        max-width: 100%;
+      }
+      /* Limit image height on mobile */
+      #about .aspect-\\[4\\/5\\] { aspect-ratio: 4/3 !important; }
+
+      /* ── Printing sector cards inner padding ── */
+      .glass-dark, .glass-light {
+        padding: 1.75rem 1.25rem !important;
+      }
+      /* Sector images max-height on mobile */
+      .sector-img { max-height: 240px; }
+      .sector-img.aspect-\\[4\\/3\\] { aspect-ratio: 16/9 !important; }
+
+      /* ── Products — cards less tall ── */
+      .pcard[style*="aspect-ratio:3/4"] { aspect-ratio: 4/3 !important; }
+      .pcard[style*="16/9"]  { aspect-ratio: 16/9 !important; }
+
+      /* ── Machinery image grid — remove offset ── */
+      #machinery .grid.grid-cols-2 > div.mt-8 { margin-top: 0 !important; }
+
+      /* ── Certifications — smaller cards on mobile ── */
+      #certifications .cert { width: 140px !important; }
+
+      /* ── Team cards ── */
+      .grid.sm\\:grid-cols-2.lg\\:grid-cols-3 { grid-template-columns: 1fr 1fr !important; }
+
+      /* ── Contact form full-width ── */
+      #cform .grid.sm\\:grid-cols-2 { grid-template-columns: 1fr !important; }
+
+      /* ── Footer ── */
+      .grid.md\\:grid-cols-2.lg\\:grid-cols-4 { grid-template-columns: 1fr 1fr !important; }
+      footer .lg\\:col-span-2 { grid-column: span 2 / span 2 !important; }
+
+      /* ── Partners marquee — faster on mobile ── */
+      .marquee-inner { animation-duration: 22s; }
+
+      /* ── Product card title sizing ── */
+      .pcard-title { font-size: 1.1rem !important; }
+
+      /* ── Buttons ── */
+      .btn-red, .btn-ghost { font-size: 0.7rem !important; padding: 0.75rem 1.25rem !important; }
+    }
+
+    /* ── Small phones (≤ 390px) ── */
+    @media (max-width: 390px) {
+      #hero h1 { font-size: 1.45rem !important; }
+      .grid.sm\\:grid-cols-2     { grid-template-columns: 1fr !important; }
+      .grid.sm\\:grid-cols-4     { grid-template-columns: 1fr 1fr !important; }
+      .grid.md\\:grid-cols-2.lg\\:grid-cols-4 { grid-template-columns: 1fr !important; }
+      footer .lg\\:col-span-2 { grid-column: span 1 / span 1 !important; }
+      #certifications .cert { width: 130px !important; }
+      .team-grid-2 { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     MOBILE MENU
+══════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     SCROLL-DRIVEN VIDEO BACKGROUND
+══════════════════════════════════════════ -->
+<div id="video-bg" aria-hidden="true">
+  <video id="bg-video" muted playsinline preload="auto" tabindex="-1" poster="poster.jpg">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+  <div id="video-scrim"></div>
+</div>
+
+<div id="mob-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <button id="mob-close" class="absolute top-5 right-5 p-2 text-ink" aria-label="Close menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M18 6 6 18M6 6l12 12"/>
+    </svg>
+  </button>
+  <nav class="flex flex-col items-center gap-8 text-center">
+    <a href="#about"          class="font-serif text-4xl font-light text-ink hover:text-crimson transition-colors duration-200" onclick="closeMob()" data-en="About"          data-ar="عن ريوباك">About</a>
+    <a href="#offset"         class="font-serif text-4xl font-light text-ink hover:text-crimson transition-colors duration-200" onclick="closeMob()" data-en="Offset"         data-ar="الأوفست">Offset</a>
+    <a href="#rotogravure"    class="font-serif text-4xl font-light text-ink hover:text-crimson transition-colors duration-200" onclick="closeMob()" data-en="Rotogravure"    data-ar="الروتوغرافيور">Rotogravure</a>
+    <a href="#machinery"      class="font-serif text-4xl font-light text-ink hover:text-crimson transition-colors duration-200" onclick="closeMob()" data-en="Machinery"      data-ar="الماكينات">Machinery</a>
+    <a href="#clients"        class="font-serif text-4xl font-light text-ink hover:text-crimson transition-colors duration-200" onclick="closeMob()" data-en="Clients"        data-ar="العملاء">Clients</a>
+    <a href="#lab"            class="font-serif text-4xl font-light text-ink hover:text-crimson transition-colors duration-200" onclick="closeMob()" data-en="Our Lab"        data-ar="مختبرنا">Our Lab</a>
+    <a href="#certifications" class="font-serif text-4xl font-light text-ink hover:text-crimson transition-colors duration-200" onclick="closeMob()" data-en="Certifications" data-ar="الشهادات">Certifications</a>
+    <a href="#team"           class="font-serif text-4xl font-light text-ink hover:text-crimson transition-colors duration-200" onclick="closeMob()" data-en="Team"           data-ar="الفريق">Team</a>
+    <a href="#contact"  class="btn-red mt-2" onclick="closeMob()" data-en="Contact us" data-ar="تواصل معنا">
+      Contact us
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </nav>
+</div>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════ -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="#" class="flex-shrink-0">
+      <img id="nav-logo" src="favicon.png" alt="Riopack Company" class="h-14 w-auto nav-logo-img" style="max-width:220px;">
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex items-center gap-7">
+      <a href="#about"           class="nav-a" data-en="About"          data-ar="عن ريوباك">About</a>
+      <div class="nav-dropdown">
+        <a href="#offset" class="nav-a inline-flex items-center gap-1" data-en="Printing" data-ar="الطباعة">Printing
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0;opacity:0.6;"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="nav-dropdown-menu">
+          <a href="#offset"       class="nav-dropdown-item" data-en="Offset Printing"       data-ar="طباعة الأوفست">Offset Printing</a>
+          <a href="#rotogravure"  class="nav-dropdown-item" data-en="Rotogravure Printing"  data-ar="طباعة الروتوغرافيور">Rotogravure Printing</a>
+        </div>
+      </div>
+      <a href="#machinery"      class="nav-a" data-en="Machinery"      data-ar="الماكينات">Machinery</a>
+      <a href="#clients"        class="nav-a" data-en="Clients"        data-ar="العملاء">Clients</a>
+      <a href="#lab"            class="nav-a" data-en="Our Lab"        data-ar="مختبرنا">Our Lab</a>
+      <a href="#certifications" class="nav-a" data-en="Certifications" data-ar="الشهادات">Certifications</a>
+      <a href="#team"           class="nav-a" data-en="Team"           data-ar="الفريق">Team</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <button id="lang-toggle" onclick="toggleLang()" class="lang-btn" aria-label="Toggle language">عربي</button>
+      <a href="#contact" class="hidden lg:inline-flex btn-red !py-2.5 !px-5 !text-[0.7rem]" data-en="Contact us" data-ar="تواصل معنا">
+        Contact us
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button id="mob-open" class="lg:hidden p-1.5 nav-mob-btn" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section id="hero" class="relative flex flex-col overflow-x-hidden"
+         style="min-height: max(100dvh, 560px);">
+
+  <!-- Overlay — kept lighter so video shows through -->
+  <div id="hero-overlay" class="absolute inset-0" style="background:linear-gradient(to right,rgba(10,7,4,0.78) 0%,rgba(10,7,4,0.52) 55%,rgba(10,7,4,0.22) 100%);"></div>
+  <!-- Bottom fade -->
+  <div class="absolute bottom-0 inset-x-0 h-24" style="background:linear-gradient(to top,rgba(24,18,10,0.45),transparent);"></div>
+
+  <!-- Year ring + certs panel (desktop) -->
+  <div id="hero-side-panel" class="absolute right-12 xl:right-20 hidden lg:flex flex-col items-center gap-2"
+       style="top:50%;transform:translateY(-68%);z-index:20;">
+    <div class="relative w-[9.5rem] h-[9.5rem]">
+      <!-- Ring svg -->
+      <svg class="ring-spin absolute inset-0 w-full h-full" viewBox="0 0 160 160">
+        <defs>
+          <path id="rp" d="M 80,80 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0"/>
+        </defs>
+        <text fill="rgba(245,240,232,0.35)" style="font-family:Jost,sans-serif;font-size:8px;letter-spacing:3.4px;">
+          <textPath href="#rp">PRECISION IN PRINTING · PERFECTION IN PACKAGING · </textPath>
+        </text>
+      </svg>
+      <!-- Center -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center">
+          <div class="font-serif text-cream font-light" style="font-size:2.75rem;line-height:1;">
+            100<span class="text-crimson">+</span>
+          </div>
+          <div class="text-[0.6rem] tracking-[0.18em] uppercase mt-1" style="color:rgba(245,240,232,0.55);" data-en="Years" data-ar="عامًا">Years</div>
+        </div>
+      </div>
+    </div>
+    <!-- Divider -->
+    <div style="width:1px;height:1.25rem;background:rgba(245,240,232,0.18);"></div>
+    <!-- Cert label -->
+    <div class="s-label" style="color:rgba(245,240,232,0.38);" data-en="Certified" data-ar="معتمد">Certified</div>
+    <!-- Cert grid (3×2) -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.45rem;">
+      <a href="#certifications" class="cert-hero-card">
+        <img src="certs/brc.jpg" alt="BRC" class="h-16 w-auto object-contain" style="max-width:100px;" loading="lazy">
+        <span class="cert-hero-label">BRC</span>
+      </a>
+      <a href="#certifications" class="cert-hero-card">
+        <img src="certs/ukas.jpg" alt="UKAS" class="h-16 w-auto object-contain" style="max-width:100px;" loading="lazy">
+        <span class="cert-hero-label">UKAS</span>
+      </a>
+      <a href="#certifications" class="cert-hero-card">
+        <img src="certs/iso9001.jpg" alt="ISO 9001" class="h-16 w-auto object-contain" style="max-width:100px;" loading="lazy">
+        <span class="cert-hero-label">ISO 9001</span>
+      </a>
+      <a href="#certifications" class="cert-hero-card">
+        <img src="certs/iso22000.jpg" alt="ISO 22000" class="h-16 w-auto object-contain" style="max-width:100px;" loading="lazy">
+        <span class="cert-hero-label">ISO 22000</span>
+      </a>
+      <a href="#certifications" class="cert-hero-card">
+        <img src="certs/iso18001.jpg" alt="ISO 18001" class="h-16 w-auto object-contain" style="max-width:100px;" loading="lazy">
+        <span class="cert-hero-label">ISO 18001</span>
+      </a>
+      <a href="#certifications" class="cert-hero-card">
+        <img src="certs/sedex.jpg" alt="Sedex" class="h-16 w-auto object-contain" style="max-width:100px;" loading="lazy">
+        <span class="cert-hero-label">Sedex</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero text content -->
+  <div class="relative z-10 flex-1 flex items-center w-full" style="min-height:0;">
+    <div class="w-full max-w-7xl mx-auto px-5 lg:px-10 pt-16 sm:pt-20 lg:pt-24 pb-4">
+    <div class="max-w-[38rem]">
+      <div class="s-label mb-6" style="color:rgba(245,240,232,0.55);" data-en="Rotogravure &amp; Offset Printing, Egypt" data-ar="طباعة الروتوغرافيور والأوفست، مصر">Rotogravure &amp; Offset Printing, Egypt</div>
+      <h1 class="font-serif text-cream font-light mb-6 leading-[1.06]"
+          style="font-size: clamp(1.65rem, 5vw, 3rem);"
+          data-en-html="Precision in printing,<br><em class='not-italic font-semibold'>perfection</em> in packaging."
+          data-ar-html="دقة في الطباعة،<br><em class='not-italic font-semibold'>إتقان</em> في التغليف.">
+        Precision in printing,<br>
+        <em class="not-italic font-semibold">perfection</em> in packaging.
+      </h1>
+      <p class="text-white mb-10 leading-relaxed"
+         style="font-size:1.0625rem; font-weight:300; max-width:48ch;"
+         data-en="Since 1926, an extension of Ashour Printing Press, Riopack delivers exceptional packaging to food, pharmaceutical, and consumer goods brands across Egypt and worldwide."
+         data-ar="منذ عام 1926، كامتداد لمطبعة عاشور، تُقدم ريوباك تغليفًا استثنائيًا لعلامات الأغذية والأدوية والسلع الاستهلاكية في مصر وحول العالم.">
+        Since 1926, an extension of Ashour Printing Press, Riopack delivers exceptional packaging to food, pharmaceutical, and consumer goods brands across Egypt and worldwide.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#offset" class="btn-red" data-en="Explore our work" data-ar="استكشف أعمالنا">
+          Explore our work
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn-ghost" data-en="Get in touch" data-ar="تواصل معنا">Get in touch</a>
+      </div>
+
+    </div>
+    </div>
+  </div>
+
+  <!-- Clients marquee (bottom of hero) -->
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-5 lg:px-10 pb-8 sm:pb-12 lg:pb-14">
+    <div style="background:rgba(245,240,232,0.08);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border:1px solid rgba(245,240,232,0.12);border-radius:2px;box-shadow:inset 0 1px 0 rgba(245,240,232,0.10);overflow:hidden;">
+      <div class="px-6 sm:px-8 pt-6 sm:pt-7 pb-4">
+        <div class="s-label" style="color:rgba(245,240,232,0.45);" data-en="Trusted by leading brands" data-ar="تثق بنا العلامات التجارية الرائدة">Trusted by leading brands</div>
+      </div>
+      <div class="marquee-fade" style="overflow:hidden;padding-bottom:1.25rem;">
+        <div class="hero-marquee-inner" style="display:flex;width:max-content;animation:scroll-left 30s linear infinite;will-change:transform;backface-visibility:hidden;">
+          <!-- Set 1 -->
+          <div class="flex items-center gap-0">
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/Lesaffre.jpeg"                       alt="Lesaffre"        class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/Elvan.jpeg"                          alt="Elvan Egypt"     class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/Evapharma.jpeg"                      alt="Eva Pharma"      class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/partners/Henkel.jpeg"                alt="Henkel"          class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/partners/P%26G.jpeg"                 alt="P&amp;G"         class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/photos/shares/partners/new%20size/Unilever-300Logo.png"                alt="Unilever"        class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/photos/shares/partners/new%20size/Savola-300Group-Logo.png"            alt="Savola Group"    class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/partners/Mondelez.jpeg"              alt="Mondelez"        class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/Kelloggs.jpeg"                       alt="Kellogg's"       class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/EasternCo..jpeg"                     alt="Eastern Company" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/partners/Egyptair.jpeg"              alt="EgyptAir"        class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/Gandour.jpeg"                        alt="Gandour"         class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+          </div>
+          <!-- Set 2 — duplicate for seamless loop -->
+          <div class="flex items-center gap-0" aria-hidden="true">
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/Lesaffre.jpeg"                       alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/Elvan.jpeg"                          alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/Evapharma.jpeg"                      alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/partners/Henkel.jpeg"                alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/partners/P%26G.jpeg"                 alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/photos/shares/partners/new%20size/Unilever-300Logo.png"                alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/photos/shares/partners/new%20size/Savola-300Group-Logo.png"            alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/partners/Mondelez.jpeg"              alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/Kelloggs.jpeg"                       alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/EasternCo..jpeg"                     alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/partners/Egyptair.jpeg"              alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+            <span class="px-10 shrink-0"><img src="https://riopack.com/laravel-filemanager/photos/shares/Gandour.jpeg"                        alt="" class="h-14 w-auto object-contain" loading="lazy" decoding="async"></span>
+            <span class="w-px h-10 bg-border shrink-0"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════ -->
+<section id="about" class="py-16 lg:py-24">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card px-8 lg:px-14 py-12 lg:py-16">
+
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-24 items-start">
+
+      <!-- Left -->
+      <div>
+        <div class="s-label mb-4 rv" data-en="About Riopack" data-ar="عن ريوباك">About Riopack</div>
+        <h2 class="font-serif text-ink font-light leading-tight mb-8 rv d1"
+            style="font-size:clamp(1.9rem,4vw,2.9rem);"
+            data-en-html="A century of craft,<br>built in Egypt."
+            data-ar-html="قرن من الحرفية،<br>بُنيت في مصر.">
+          A century of craft,<br>built in Egypt.
+        </h2>
+        <div class="space-y-5 rv d2" style="color:#3b2f1e;font-size:1.0315rem;line-height:1.75;max-width:52ch;">
+          <p data-en="Riopack Co. began as an extension of Ashour Printing Press in 1926. What started as a regional printing operation grew into one of Egypt's most trusted names in rotogravure and offset packaging, serving both the local market and export destinations worldwide."
+             data-ar="بدأت ريوباك كامتداد لمطبعة عاشور عام 1926. نمت من عملية طباعة إقليمية لتصبح واحدة من أكثر الأسماء موثوقية في مصر في مجال طباعة الروتوغرافيور والأوفست، خادمةً السوق المحلي ووجهات التصدير حول العالم.">Riopack Co. began as an extension of Ashour Printing Press in 1926. What started as a regional printing operation grew into one of Egypt's most trusted names in rotogravure and offset packaging, serving both the local market and export destinations worldwide.</p>
+          <p data-en="Our reach spans tea packaging, cigarette wraps, aluminum foil, medicine boxes, soap wrappers, food-grade laminates, and beyond. With graphic design and pre-press departments in-house, we translate client briefs into precise packaging outcomes at every stage."
+             data-ar="نطاقنا يشمل تغليف الشاي وأغلفة السجائر ورقائق الألومنيوم وعلب الأدوية وأغلفة الصابون والرقائق متعددة الطبقات للأغذية والمزيد. مع أقسام التصميم الجرافيكي وما قبل الطباعة داخل الشركة، نترجم متطلبات العملاء إلى نتائج تغليف دقيقة في كل مرحلة.">Our reach spans tea packaging, cigarette wraps, aluminum foil, medicine boxes, soap wrappers, food-grade laminates, and beyond. With graphic design and pre-press departments in-house, we translate client briefs into precise packaging outcomes at every stage.</p>
+        </div>
+
+        <blockquote class="mt-10 rv d3">
+          <p class="font-serif text-ink font-light leading-relaxed" style="font-size:1.25rem;font-style:italic;max-width:42ch;"
+             data-en='"Pioneering excellence in printing and packaging: our vision guides every press, every cut, every fold."'
+             data-ar='"الريادة في التميز بالطباعة والتغليف: رؤيتنا تُوجّه كل آلة، كل قطع، كل طية."'>
+            "Pioneering excellence in printing and packaging: our vision guides every press, every cut, every fold."
+          </p>
+        </blockquote>
+
+        <!-- Material tags -->
+        <div class="mt-10 rv d4">
+          <div class="s-label mb-4" data-en="Materials we work with" data-ar="المواد التي نعمل بها">Materials we work with</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="chip">BOPP Transparent</span>
+            <span class="chip">BOPP Metalized</span>
+            <span class="chip">BOPP Perlized</span>
+            <span class="chip">PET Transparent</span>
+            <span class="chip">PET Holograph</span>
+            <span class="chip">PET Metalized</span>
+            <span class="chip">Hard Aluminum Foil</span>
+            <span class="chip">Soft Aluminum Foil</span>
+            <span class="chip">Paper Laminate</span>
+            <span class="chip">2–5 Layer Film</span>
+            <span class="chip">Duplex Board</span>
+            <span class="chip">SBS Board</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="relative rv d2">
+        <div class="aspect-[4/3] sm:aspect-[4/4] lg:aspect-[4/5] overflow-hidden rounded-sm">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?fit=crop&w=800&h=1000&q=80"
+               alt="Riopack printing facility interior"
+               class="w-full h-full object-cover" loading="lazy" decoding="async">
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/35 to-transparent"></div>
+        </div>
+        <!-- Floating credential card — absolute on lg, static on mobile -->
+        <div class="lg:absolute lg:-bottom-6 lg:-left-8 glass-light p-5 mt-4 lg:mt-0 max-w-full lg:max-w-[14rem] rv d4">
+          <div class="text-[0.6rem] tracking-[0.18em] uppercase text-muted mb-3" data-en="Certifications held" data-ar="الشهادات المحتازة">Certifications held</div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="text-[0.65rem] font-semibold bg-ink text-cream px-2.5 py-1 tracking-wide">BRC</span>
+            <span class="text-[0.65rem] font-semibold bg-ink text-cream px-2.5 py-1 tracking-wide">ISO 9001</span>
+            <span class="text-[0.65rem] font-semibold bg-ink text-cream px-2.5 py-1 tracking-wide">ISO 22000</span>
+            <span class="text-[0.65rem] font-semibold bg-ink text-cream px-2.5 py-1 tracking-wide">ISO 18001</span>
+            <span class="text-[0.65rem] font-semibold bg-ink text-cream px-2.5 py-1 tracking-wide">UKAS</span>
+            <span class="text-[0.65rem] font-semibold bg-ink text-cream px-2.5 py-1 tracking-wide">Sedex</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /site-card -->
+  </div><!-- /max-w -->
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     OFFSET PRINTING
+══════════════════════════════════════════ -->
+<section id="offset" class="py-16 lg:py-24">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card overflow-hidden">
+
+    <div class="grid lg:grid-cols-2 min-h-[520px]">
+
+      <!-- Content -->
+      <div class="px-8 lg:px-14 py-12 lg:py-16 flex flex-col justify-center">
+        <div class="s-label text-crimson mb-4 rv" data-en="Printing — Sector 01" data-ar="الطباعة — القطاع 01">Printing — Sector 01</div>
+        <h2 class="font-serif text-ink font-light leading-tight mb-5 rv d1"
+            style="font-size:clamp(2rem,4.5vw,3.2rem);"
+            data-en="Offset Printing" data-ar="طباعة الأوفست">Offset Printing</h2>
+        <p class="text-muted leading-relaxed mb-8 rv d1"
+           style="font-size:1rem; max-width:44ch;"
+           data-en="Our offset department handles duplex board and SBS corrugated packaging with Heidelberg 2–6 color presses — pharma cartons, confectionery boxes, food cartons, and more. Every run includes hot stamping, UV varnish, and metallic lamination options."
+           data-ar="يتولى قسم الأوفست لدينا معالجة تغليف الورق المقوى الثنائي والمموج SBS بمطابع هايدلبرغ من 2 إلى 6 ألوان — علب الأدوية وصناديق الحلوى وعلب الأغذية وما هو أكثر. تشمل كل دورة إنتاج خيارات الختم الساخن وورنيش UV والتلبيس المعدني.">
+          Our offset department handles duplex board and SBS corrugated packaging with Heidelberg 2–6 color presses — pharma cartons, confectionery boxes, food cartons, and more. Every run includes hot stamping, UV varnish, and metallic lamination options.
+        </p>
+
+        <!-- Specs grid -->
+        <div class="grid grid-cols-2 gap-3 mb-8 rv d2">
+          <div class="rounded-sm border border-border p-4">
+            <div class="s-label text-muted mb-1" data-en="Presses" data-ar="المطابع">Presses</div>
+            <div class="text-sm font-medium text-ink" data-en="Heidelberg 2–4–6 colour" data-ar="هايدلبرغ 2–4–6 ألوان">Heidelberg 2–4–6 colour</div>
+          </div>
+          <div class="rounded-sm border border-border p-4">
+            <div class="s-label text-muted mb-1" data-en="Finishing" data-ar="التشطيب">Finishing</div>
+            <div class="text-sm font-medium text-ink" data-en="Hot foil · UV varnish" data-ar="ختم حراري · ورنيش UV">Hot foil · UV varnish</div>
+          </div>
+          <div class="rounded-sm border border-border p-4">
+            <div class="s-label text-muted mb-1" data-en="Cutting" data-ar="القطع">Cutting</div>
+            <div class="text-sm font-medium text-ink" data-en="Bobst cutting &amp; creasing" data-ar="قطع وكبس بوبست">Bobst cutting &amp; creasing</div>
+          </div>
+          <div class="rounded-sm border border-border p-4">
+            <div class="s-label text-muted mb-1" data-en="Assembly" data-ar="التجميع">Assembly</div>
+            <div class="text-sm font-medium text-ink" data-en="Hobst folder gluer" data-ar="آلة طي ولصق هوبست">Hobst folder gluer</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3 rv d3">
+          <a href="offset.html" class="btn-red"
+             data-en="Explore Offset Printing" data-ar="استكشف طباعة الأوفست">
+            Explore Offset Printing
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn-ghost-dk" data-en="Get a quote" data-ar="احصل على عرض سعر">Get a quote</a>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="sector-img aspect-[4/3] lg:aspect-auto order-first lg:order-last">
+        <img src="https://images.unsplash.com/photo-1510511336377-1a9caa095849?fit=crop&w=900&h=700&q=80"
+             alt="Offset printing machines at Riopack" loading="lazy" decoding="async">
+      </div>
+
+    </div>
+  </div><!-- /site-card -->
+  </div><!-- /max-w -->
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ROTOGRAVURE PRINTING
+══════════════════════════════════════════ -->
+<section id="rotogravure" class="py-16 lg:py-24">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card-dark overflow-hidden">
+
+    <div class="grid lg:grid-cols-2 min-h-[520px]">
+
+      <!-- Image -->
+      <div class="sector-img aspect-[4/3] lg:aspect-auto">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?fit=crop&w=900&h=700&q=80"
+             alt="Rotogravure printing machinery at Riopack" loading="lazy" decoding="async">
+      </div>
+
+      <!-- Content -->
+      <div class="px-8 lg:px-14 py-12 lg:py-16 flex flex-col justify-center text-cream">
+        <div class="s-label text-crimson mb-4 rv" data-en="Printing — Sector 02" data-ar="الطباعة — القطاع 02">Printing — Sector 02</div>
+        <h2 class="font-serif text-cream font-light leading-tight mb-5 rv d1"
+            style="font-size:clamp(2rem,4.5vw,3.2rem);"
+            data-en="Rotogravure Printing" data-ar="طباعة الروتوغرافيور">Rotogravure Printing</h2>
+        <p class="leading-relaxed mb-8 rv d1"
+           style="font-size:1rem; max-width:44ch; color:rgba(245,240,232,0.70);"
+           data-en="Italian-engineered 8 &amp; 9 color machines controlled by eltromat and Bobst technology, with electrostatic charge equipment that eliminates white spots. Our rotogravure division is the backbone of flexible packaging for food, pharma, and consumer goods."
+           data-ar="آلات 8 و9 ألوان مصنوعة إيطاليًا مُتحكَّم بها بتقنية إلتروماط وبوبست، مع معدات الشحن الإلكتروستاتيكي التي تُزيل النقاط البيضاء. يُمثّل قسم الروتوغرافيور لدينا العمود الفقري للتغليف المرن للأغذية والأدوية والسلع الاستهلاكية.">
+          Italian-engineered 8 &amp; 9 color machines controlled by eltromat and Bobst technology, with electrostatic charge equipment that eliminates white spots. Our rotogravure division is the backbone of flexible packaging for food, pharma, and consumer goods.
+        </p>
+
+        <!-- Specs grid -->
+        <div class="grid grid-cols-2 gap-3 mb-8 rv d2">
+          <div class="rounded-sm p-4" style="border:1px solid rgba(245,240,232,0.12); background:rgba(245,240,232,0.05);">
+            <div class="s-label mb-1" style="color:rgba(245,240,232,0.45);" data-en="Machines" data-ar="الآلات">Machines</div>
+            <div class="text-sm font-medium text-cream" data-en="8 &amp; 9 color Italian-made" data-ar="8 و9 ألوان إيطالية الصنع">8 &amp; 9 color Italian-made</div>
+          </div>
+          <div class="rounded-sm p-4" style="border:1px solid rgba(245,240,232,0.12); background:rgba(245,240,232,0.05);">
+            <div class="s-label mb-1" style="color:rgba(245,240,232,0.45);" data-en="Registration" data-ar="التسجيل">Registration</div>
+            <div class="text-sm font-medium text-cream" data-en="Eltromat &amp; Bobst" data-ar="إلتروماط وبوبست">Eltromat &amp; Bobst</div>
+          </div>
+          <div class="rounded-sm p-4" style="border:1px solid rgba(245,240,232,0.12); background:rgba(245,240,232,0.05);">
+            <div class="s-label mb-1" style="color:rgba(245,240,232,0.45);" data-en="Lamination" data-ar="التلبيس">Lamination</div>
+            <div class="text-sm font-medium text-cream" data-en="Nord Meccanica solventless" data-ar="نورد ميكانيكا بدون مذيب">Nord Meccanica solventless</div>
+          </div>
+          <div class="rounded-sm p-4" style="border:1px solid rgba(245,240,232,0.12); background:rgba(245,240,232,0.05);">
+            <div class="s-label mb-1" style="color:rgba(245,240,232,0.45);" data-en="Slitting" data-ar="التقطيع">Slitting</div>
+            <div class="text-sm font-medium text-cream" data-en="C-schiavi &amp; Goebel" data-ar="C-schiavi وجوبل">C-schiavi &amp; Goebel</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3 rv d3">
+          <a href="rotogravure.html" class="btn-red"
+             data-en="Explore Rotogravure" data-ar="استكشف الروتوغرافيور">
+            Explore Rotogravure
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn-ghost" data-en="Get a quote" data-ar="احصل على عرض سعر">Get a quote</a>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /site-card-dark -->
+  </div><!-- /max-w -->
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PRODUCTS
+══════════════════════════════════════════ -->
+<section id="products" class="py-16 lg:py-24" style="display:none;">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card px-8 lg:px-14 py-12 lg:py-16">
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+      <div>
+        <div class="s-label mb-3 rv" data-en="What we produce" data-ar="ما ننتجه">What we produce</div>
+        <h2 class="font-serif text-ink font-light leading-tight rv d1"
+            style="font-size:clamp(1.9rem,4vw,2.9rem);" data-en="Our product range" data-ar="نطاق منتجاتنا">Our product range</h2>
+      </div>
+      <p class="text-muted text-sm leading-relaxed rv d2" style="max-width:34ch;"
+         data-en="Seven specialized categories spanning food, pharma, personal care, and industrial packaging."
+         data-ar="سبع فئات متخصصة تشمل الأغذية والأدوية والعناية الشخصية والتغليف الصناعي.">
+        Seven specialized categories spanning food, pharma, personal care, and industrial packaging.
+      </p>
+    </div>
+
+    <!-- Asymmetric grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+
+      <!-- Food Packaging (wide) -->
+      <div class="pcard lg:col-span-2 rv" style="aspect-ratio:16/9;">
+        <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?fit=crop&w=1000&h=560&q=80" alt="Food packaging products" loading="lazy" decoding="async">
+        <div class="pcard-overlay"></div>
+        <div class="pcard-body">
+          <div class="pcard-num">Category 01</div>
+          <div class="pcard-title" style="font-size:1.5rem;">Food Packaging</div>
+          <div class="pcard-desc" style="max-width:38ch;">Tea, confectionery, snacks, beverages, dairy, dry goods; BOPP, PET, foil, and multi-layer laminates.</div>
+          <a href="rotogravure.html#food-packaging" class="pcard-link">View products</a>
+        </div>
+      </div>
+
+      <!-- Stiffener Board (tall) -->
+      <div class="pcard rv d1" style="aspect-ratio:3/4;">
+        <img src="https://riopack.com/thumbs/600x400//photos/shares/portfolio/Stiffener%20Board.jpeg" alt="Stiffener board packaging" loading="lazy" decoding="async">
+        <div class="pcard-overlay"></div>
+        <div class="pcard-body">
+          <div class="pcard-num">Category 02</div>
+          <div class="pcard-title">Stiffener Board</div>
+          <div class="pcard-desc">Antifungi and anti-mold treated boards for packaging protection.</div>
+          <a href="rotogravure.html#stiffener-board" class="pcard-link">View products</a>
+        </div>
+      </div>
+
+      <!-- Offset Products -->
+      <div class="pcard rv d1" style="aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?fit=crop&w=600&h=450&q=80" alt="Offset printed cartons" loading="lazy" decoding="async">
+        <div class="pcard-overlay"></div>
+        <div class="pcard-body">
+          <div class="pcard-num">Category 03</div>
+          <div class="pcard-title">Offset Products</div>
+          <div class="pcard-desc">Pharma, candy, food cartons and duplex board boxes.</div>
+          <a href="offset.html#food-products" class="pcard-link">View products</a>
+        </div>
+      </div>
+
+      <!-- PVC Extruder -->
+      <div class="pcard rv d2" style="aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1617791160505-6f00504e3519?fit=crop&w=600&h=450&q=80" alt="PVC extruder film lines" loading="lazy" decoding="async">
+        <div class="pcard-overlay"></div>
+        <div class="pcard-body">
+          <div class="pcard-num">Category 04</div>
+          <div class="pcard-title">PVC Extruder Lines</div>
+          <div class="pcard-desc">Transparent, colored, and metalized PVC film, 8–150 microns.</div>
+          <a href="rotogravure.html#pvc-extruder" class="pcard-link">View products</a>
+        </div>
+      </div>
+
+      <!-- Cosmetics & Soap -->
+      <div class="pcard rv d3" style="aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1617825295690-28ae56c56135?fit=crop&w=600&h=450&q=80" alt="Soap and cosmetics wrappers" loading="lazy" decoding="async">
+        <div class="pcard-overlay"></div>
+        <div class="pcard-body">
+          <div class="pcard-num">Category 05</div>
+          <div class="pcard-title">Cosmetics &amp; Soap Wrappers</div>
+          <div class="pcard-desc">Multi-layer soap wrappers, butter labels, and wipes packaging.</div>
+          <a href="rotogravure.html#cosmetics-soap" class="pcard-link">View products</a>
+        </div>
+      </div>
+
+      <!-- PE Blowing Film (wide) -->
+      <div class="pcard lg:col-span-2 rv d2" style="aspect-ratio:16/9;">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?fit=crop&w=1000&h=560&q=80" alt="Polyethylene blowing film lines" loading="lazy" decoding="async">
+        <div class="pcard-overlay"></div>
+        <div class="pcard-body">
+          <div class="pcard-num">Category 06</div>
+          <div class="pcard-title" style="font-size:1.5rem;">Polyethylene Blowing Film Lines</div>
+          <div class="pcard-desc" style="max-width:40ch;">Rolls and sheets for flow wrapping, ice cream cone production, and general flexible packaging applications.</div>
+          <a href="rotogravure.html#pe-blowing" class="pcard-link">View products</a>
+        </div>
+      </div>
+
+      <!-- Fat & Oils -->
+      <div class="pcard rv d3" style="aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?fit=crop&w=600&h=450&q=80" alt="Fat and oils wrappers" loading="lazy" decoding="async">
+        <div class="pcard-overlay"></div>
+        <div class="pcard-body">
+          <div class="pcard-num">Category 07</div>
+          <div class="pcard-title">Fat &amp; Oils Wrappers</div>
+          <div class="pcard-desc">Paraffin-coated or chemically treated paper for butter, margarine, and vegetable fat packaging.</div>
+          <a href="rotogravure.html#fat-oils" class="pcard-link">View products</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product tags -->
+    <div class="mt-10 rv d3">
+      <div class="s-label mb-4">Selected products</div>
+      <div class="flex flex-wrap gap-2">
+        <span class="chip">Carton</span>
+        <span class="chip">Banderole</span>
+        <span class="chip">Label film, oil bottles</span>
+        <span class="chip">Label film, water bottles</span>
+        <span class="chip">Soap paper wrapper</span>
+        <span class="chip">Antifungi stiffener board</span>
+        <span class="chip">Anti-mold stiffener board</span>
+        <span class="chip">Aluminium foil, cigarette</span>
+        <span class="chip">Aluminium foil, general</span>
+        <span class="chip">Wipes package</span>
+        <span class="chip">Duplex board boxes</span>
+        <span class="chip">Mixpaps</span>
+        <span class="chip">Candy &amp; chocolate wrapper</span>
+      </div>
+    </div>
+
+  </div><!-- /site-card -->
+  </div><!-- /max-w -->
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     MACHINERY  (dark)
+══════════════════════════════════════════ -->
+<section id="machinery" class="py-16 lg:py-24">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card-dark px-8 lg:px-14 py-12 lg:py-16">
+
+    <div class="grid lg:grid-cols-2 gap-14 lg:gap-24 items-start">
+
+      <!-- Left: list -->
+      <div>
+        <div class="s-label text-crimson mb-4 rv" data-en="Our equipment" data-ar="معداتنا">Our equipment</div>
+        <h2 class="font-serif text-cream font-light leading-tight mb-10 rv d1"
+            style="font-size:clamp(1.9rem,4vw,2.9rem);" data-en="Industrial-grade machinery" data-ar="آلات بمستوى صناعي">Industrial-grade machinery</h2>
+
+        <div>
+          <div class="mitem rv">
+            <div class="flex items-start gap-5">
+              <span class="text-crimson font-mono text-xs mt-0.5 w-7 shrink-0">01</span>
+              <div>
+                <div class="text-cream font-medium mb-1.5" data-en="Rotogravure Presses" data-ar="مطابع الروتوغرافيور">Rotogravure Presses</div>
+                <div class="text-cream/50 text-sm leading-relaxed" data-en="8 &amp; 9 color Italian-made machines. Fully registered by eltromat and Bobst technology with electrostatic charge equipment for white-spot elimination." data-ar="آلات 8 و9 ألوان إيطالية الصنع. تسجيل كامل بتقنية إلتروماط وبوبست مع معدات الشحن الإلكتروستاتيكي للقضاء على البقع البيضاء.">8 &amp; 9 color Italian-made machines. Fully registered by eltromat and Bobst technology with electrostatic charge equipment for white-spot elimination.</div>
+              </div>
+            </div>
+          </div>
+          <div class="mitem rv d1">
+            <div class="flex items-start gap-5">
+              <span class="text-crimson font-mono text-xs mt-0.5 w-7 shrink-0">02</span>
+              <div>
+                <div class="text-cream font-medium mb-1.5" data-en="Offset Machines" data-ar="آلات الأوفست">Offset Machines</div>
+                <div class="text-cream/50 text-sm leading-relaxed" data-en="Heidelberg 2–4–6 colour presses. Bobst cutting &amp; creasing. Hobst folder gluer. Hot foil stamping. German UV varnish coating. 2 Lamination machines." data-ar="مطابع هايدلبرغ 2–4–6 ألوان. قطع وكبس بوبست. آلة طي ولصق هوبست. ختم حراري. طلاء ورنيش UV ألماني. آلتا لامينيت.">Heidelberg 2–4–6 colour presses. Bobst cutting &amp; creasing. Hobst folder gluer. Hot foil stamping. German UV varnish coating. 2 Lamination machines.</div>
+              </div>
+            </div>
+          </div>
+          <div class="mitem rv d2">
+            <div class="flex items-start gap-5">
+              <span class="text-crimson font-mono text-xs mt-0.5 w-7 shrink-0">03</span>
+              <div>
+                <div class="text-cream font-medium mb-1.5" data-en="Laminators &amp; Multi-Coaters" data-ar="آلات اللامينيت والطلاء المتعدد">Laminators &amp; Multi-Coaters</div>
+                <div class="text-cream/50 text-sm leading-relaxed" data-en="Pagendram solvent base lamination (Germany). Nord Meccanica solvent-base and solventless machines (Italy) for double-layer food, dairy, and dry product packaging." data-ar="لامينيت قائم على مذيب من باجندرام (ألمانيا). آلات نورد ميكانيكا بمذيب وبدون مذيب (إيطاليا) لتغليف الأغذية ومنتجات الألبان والمواد الجافة ثنائية الطبقة.">Pagendram solvent base lamination (Germany). Nord Meccanica solvent-base and solventless machines (Italy) for double-layer food, dairy, and dry product packaging.</div>
+              </div>
+            </div>
+          </div>
+          <div class="mitem rv d3">
+            <div class="flex items-start gap-5">
+              <span class="text-crimson font-mono text-xs mt-0.5 w-7 shrink-0">04</span>
+              <div>
+                <div class="text-cream font-medium mb-1.5" data-en="Slitters &amp; Transformers" data-ar="آلات التقطيع والتحويل">Slitters &amp; Transformers</div>
+                <div class="text-cream/50 text-sm leading-relaxed" data-en="C-schiavi slitters in multiple sizes (Italy). Goebel slitters in multiple sizes (Germany)." data-ar="آلات تقطيع C-schiavi بأحجام متعددة (إيطاليا). آلات تقطيع جوبل بأحجام متعددة (ألمانيا).">C-schiavi slitters in multiple sizes (Italy). Goebel slitters in multiple sizes (Germany).</div>
+              </div>
+            </div>
+          </div>
+          <div class="mitem rv d4">
+            <div class="flex items-start gap-5">
+              <span class="text-crimson font-mono text-xs mt-0.5 w-7 shrink-0">05</span>
+              <div>
+                <div class="text-cream font-medium mb-1.5" data-en="Punching &amp; Cone Making" data-ar="الثقب وصنع المخاريط">Punching &amp; Cone Making</div>
+                <div class="text-cream/50 text-sm leading-relaxed" data-en="Risen punching machines (Germany). 4 lange cone making machines (Germany) for ice cream cone production." data-ar="آلات ثقب ريزن (ألمانيا). 4 آلات صنع مخاريط لانج (ألمانيا) لإنتاج مخاريط الآيس كريم.">Risen punching machines (Germany). 4 lange cone making machines (Germany) for ice cream cone production.</div>
+              </div>
+            </div>
+          </div>
+          <div class="mitem rv d5">
+            <div class="flex items-start gap-5">
+              <span class="text-crimson font-mono text-xs mt-0.5 w-7 shrink-0">06</span>
+              <div>
+                <div class="text-cream font-medium mb-1.5" data-en="Extruder &amp; Other Fields" data-ar="البثق ومجالات أخرى">Extruder &amp; Other Fields</div>
+                <div class="text-cream/50 text-sm leading-relaxed" data-en="PVC film production (8–150 microns). Polyethylene blowing film lines. Printed/treated aluminium and mix-pap covers for chocolate and yoghurt. Banderole role wrapper." data-ar="إنتاج أفلام PVC (8–150 ميكرون). خطوط أفلام البولي إيثيلين المنفوخة. أغطية ألومنيوم مطبوعة/معالجة وأغطية mix-pap للشوكولاتة والزبادي. لفافة باندرول.">PVC film production (8–150 microns). Polyethylene blowing film lines. Printed/treated aluminium and mix-pap covers for chocolate and yoghurt. Banderole role wrapper.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: image grid -->
+      <div class="grid grid-cols-2 gap-3 rv d2">
+        <div class="aspect-square overflow-hidden rounded-sm">
+          <img src="https://images.unsplash.com/photo-1581079289196-67865ea83118?fit=crop&w=400&h=400&q=80" alt="Rotogravure press"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+        </div>
+        <div class="aspect-square overflow-hidden rounded-sm lg:mt-8">
+          <img src="https://images.unsplash.com/photo-1625820104062-387167dd655b?fit=crop&w=400&h=400&q=80" alt="Offset machine"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+        </div>
+        <div class="aspect-square overflow-hidden rounded-sm">
+          <img src="https://images.unsplash.com/photo-1513828742140-ccaa28f3eda0?fit=crop&w=400&h=400&q=80" alt="Laminator"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+        </div>
+        <div class="aspect-square overflow-hidden rounded-sm lg:mt-8">
+          <img src="https://images.unsplash.com/photo-1567093322102-6bdd32fba67d?fit=crop&w=400&h=400&q=80" alt="Slitter machine"
+               class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </div><!-- /site-card-dark -->
+  </div><!-- /max-w -->
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CLIENTS / PARTNERSHIPS
+══════════════════════════════════════════ -->
+<section id="clients" class="py-16 lg:py-24">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card px-8 lg:px-14 py-12 lg:py-16">
+
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+      <div>
+        <div class="s-label text-crimson mb-3 rv" data-en="Trusted partnerships" data-ar="شراكات موثوقة">Trusted partnerships</div>
+        <h2 class="font-serif text-ink font-light leading-tight rv d1"
+            style="font-size:clamp(1.9rem,4vw,2.9rem);"
+            data-en="Packaging the brands that define everyday life"
+            data-ar="نُغلّف العلامات التي تُشكّل الحياة اليومية">
+          Packaging the brands<br>that define everyday life
+        </h2>
+      </div>
+      <p class="text-muted text-sm leading-relaxed rv d2" style="max-width:38ch;"
+         data-en="From multinational FMCG leaders to Egypt's most trusted household names, we've spent decades building supply partnerships grounded in technical precision and production reliability."
+         data-ar="من عمالقة السلع الاستهلاكية متعددة الجنسيات إلى أعرق العلامات المصرية، نبنى منذ عقود شراكات إمداد قائمة على الدقة التقنية والموثوقية الإنتاجية.">
+        From multinational FMCG leaders to Egypt's most trusted household names, we've spent decades building supply partnerships grounded in technical precision and production reliability.
+      </p>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12 rv d1">
+      <div class="rounded-sm border border-border p-5 text-center">
+        <div class="font-serif text-ink font-light" style="font-size:2rem;line-height:1;">50<span class="text-crimson">+</span></div>
+        <div class="s-label text-muted mt-2" data-en="Active partners" data-ar="شريك نشط">Active partners</div>
+      </div>
+      <div class="rounded-sm border border-border p-5 text-center">
+        <div class="font-serif text-ink font-light" style="font-size:2rem;line-height:1;">20<span class="text-crimson">+</span></div>
+        <div class="s-label text-muted mt-2" data-en="Years avg. relationship" data-ar="سنة متوسط العلاقة">Years avg. relationship</div>
+      </div>
+      <div class="rounded-sm border border-border p-5 text-center">
+        <div class="font-serif text-ink font-light" style="font-size:2rem;line-height:1;">12<span class="text-crimson">+</span></div>
+        <div class="s-label text-muted mt-2" data-en="Industries served" data-ar="صناعة مخدومة">Industries served</div>
+      </div>
+      <div class="rounded-sm border border-border p-5 text-center">
+        <div class="font-serif text-ink font-light" style="font-size:2rem;line-height:1;">4</div>
+        <div class="s-label text-muted mt-2" data-en="Continents reached" data-ar="قارة مخدومة">Continents reached</div>
+      </div>
+    </div>
+
+    <!-- Featured brand cards -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+
+      <!-- P&G -->
+      <div class="flex flex-col gap-4 rounded-sm border border-border p-6 rv">
+        <div class="flex items-center justify-between">
+          <div class="s-label text-crimson" data-en="Consumer Goods" data-ar="سلع استهلاكية">Consumer Goods</div>
+        </div>
+        <img src="https://riopack.com/laravel-filemanager/photos/shares/partners/P%26G.jpeg"
+             alt="P&G" class="h-12 w-auto object-contain object-left" loading="lazy">
+        <p class="text-sm text-muted leading-relaxed flex-1"
+           data-en="High-volume flexible packaging across P&G's Egyptian FMCG portfolio. Eight-color rotogravure on BOPP, PET, and metallized substrates for personal care and home care categories — tight registration with consistent Delta-E across multi-million-unit runs."
+           data-ar="تغليف مرن عالي الحجم لمحفظة بي&جي الاستهلاكية في مصر. طباعة روتوغرافيور بثمانية ألوان على BOPP وPET والركائز المعدنية لفئتَي العناية الشخصية والمنزلية، بتسجيل دقيق وثبات ألوان عبر ملايين الوحدات.">
+          High-volume flexible packaging across P&amp;G's Egyptian FMCG portfolio. Eight-color rotogravure on BOPP, PET, and metallized substrates for personal care and home care — tight registration across multi-million-unit runs.
+        </p>
+        <div class="pt-4 border-t border-border flex items-center justify-between">
+          <div>
+            <div class="s-label text-muted mb-0.5" data-en="Primary output" data-ar="المنتج الأساسي">Primary output</div>
+            <div class="text-sm font-medium text-ink" data-en="Flexible laminate films" data-ar="أفلام لامينيت مرنة">Flexible laminate films</div>
+          </div>
+          <div class="text-crimson" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unilever -->
+      <div class="flex flex-col gap-4 rounded-sm border border-border p-6 rv d1">
+        <div class="flex items-center justify-between">
+          <div class="s-label text-crimson" data-en="Food & Consumer" data-ar="غذاء واستهلاك">Food &amp; Consumer</div>
+        </div>
+        <img src="https://riopack.com/photos/shares/partners/new%20size/Unilever-300Logo.png"
+             alt="Unilever" class="h-12 w-auto object-contain object-left" loading="lazy">
+        <p class="text-sm text-muted leading-relaxed flex-1"
+           data-en="Multi-category laminate structures for Unilever's food and personal care range. Moisture-barrier films for spreads and sauces; high-gloss surface laminates for fabric care. All food-contact packaging produced under ISO 22000 certified conditions."
+           data-ar="هياكل لامينيت متعددة الفئات لمنتجات يونيليفر الغذائية ومستحضرات العناية الشخصية. أفلام حاجزة للرطوبة للمواد الدهنية والصلصات؛ لامينيت عالي اللمعان للعناية بالملابس. جميع تغليف الأغذية المنتجة في ظل شروط معتمدة بـISO 22000.">
+          Multi-category laminate structures for Unilever's food and personal care range. Moisture-barrier films for spreads and sauces; high-gloss surface laminates for fabric care. All food-contact packaging under ISO 22000 certified conditions.
+        </p>
+        <div class="pt-4 border-t border-border flex items-center justify-between">
+          <div>
+            <div class="s-label text-muted mb-0.5" data-en="Primary output" data-ar="المنتج الأساسي">Primary output</div>
+            <div class="text-sm font-medium text-ink" data-en="Barrier laminates &amp; surface films" data-ar="لامينيت حاجز وأفلام سطحية">Barrier laminates &amp; surface films</div>
+          </div>
+          <div class="text-crimson" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mondelez -->
+      <div class="flex flex-col gap-4 rounded-sm border border-border p-6 rv d2">
+        <div class="flex items-center justify-between">
+          <div class="s-label text-crimson" data-en="Confectionery" data-ar="حلويات">Confectionery</div>
+        </div>
+        <img src="https://riopack.com/laravel-filemanager/photos/shares/partners/Mondelez.jpeg"
+             alt="Mondelez" class="h-12 w-auto object-contain object-left" loading="lazy">
+        <p class="text-sm text-muted leading-relaxed flex-1"
+           data-en="High-speed rotogravure wrappers and flow-pack films for Cadbury and Mondelez's Egyptian portfolio. Metallized barrier laminates protect chocolate and biscuit freshness. Precise brand-color reproduction on high-saturation liveries across shifting seasonal SKUs."
+           data-ar="أغلفة روتوغرافيور عالية السرعة وأفلام لف مستمر لمحفظة كادبوري ومونديليز في مصر. لامينيت معدني حاجز يحافظ على طزاجة الشوكولاتة والبسكويت، مع إعادة إنتاج دقيقة لألوان العلامة التجارية عبر SKUs الموسمية المتغيرة.">
+          High-speed rotogravure wrappers and flow-pack films for Cadbury and Mondelez's Egyptian portfolio. Metallized barrier laminates protect chocolate and biscuit freshness across seasonal SKU changes.
+        </p>
+        <div class="pt-4 border-t border-border flex items-center justify-between">
+          <div>
+            <div class="s-label text-muted mb-0.5" data-en="Primary output" data-ar="المنتج الأساسي">Primary output</div>
+            <div class="text-sm font-medium text-ink" data-en="Confectionery wrappers &amp; flow-pack" data-ar="أغلفة الحلوى وLف المستمر">Confectionery wrappers &amp; flow-pack</div>
+          </div>
+          <div class="text-crimson" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kellogg's -->
+      <div class="flex flex-col gap-4 rounded-sm border border-border p-6 rv">
+        <div class="flex items-center justify-between">
+          <div class="s-label text-crimson" data-en="Cereals &amp; Snacks" data-ar="حبوب ووجبات خفيفة">Cereals &amp; Snacks</div>
+        </div>
+        <img src="https://riopack.com/laravel-filemanager/photos/shares/Kelloggs.jpeg"
+             alt="Kellogg's" class="h-12 w-auto object-contain object-left" loading="lazy">
+        <p class="text-sm text-muted leading-relaxed flex-1"
+           data-en="Printed cereal bag inners, BOPP outer sleeves, and flow-wrap films for the Egyptian market. Colour-consistent print across high-saturation brand liveries with rigorous food-grade substrate specifications and full batch documentation."
+           data-ar="أكياس حبوب داخلية مطبوعة وأغطية BOPP خارجية وأفلام لف مستمر للسوق المصري، مع ثبات لوني على خلفيات العلامة المشبعة وتوثيق كامل للدفعات وفق مواصفات الركيزة الغذائية.">
+          Printed cereal bag inners, BOPP outer sleeves, and flow-wrap films for the Egyptian market. Colour-consistent print on high-saturation liveries with rigorous food-grade specs and full batch documentation.
+        </p>
+        <div class="pt-4 border-t border-border flex items-center justify-between">
+          <div>
+            <div class="s-label text-muted mb-0.5" data-en="Primary output" data-ar="المنتج الأساسي">Primary output</div>
+            <div class="text-sm font-medium text-ink" data-en="Cereal inners &amp; flexible sleeves" data-ar="أكياس الحبوب الداخلية والأغطية المرنة">Cereal inners &amp; flexible sleeves</div>
+          </div>
+          <div class="text-crimson" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Savola Group -->
+      <div class="flex flex-col gap-4 rounded-sm border border-border p-6 rv d1">
+        <div class="flex items-center justify-between">
+          <div class="s-label text-crimson" data-en="Edible Oils &amp; Food" data-ar="زيوت غذائية وأغذية">Edible Oils &amp; Food</div>
+        </div>
+        <img src="https://riopack.com/photos/shares/partners/new%20size/Savola-300Group-Logo.png"
+             alt="Savola Group" class="h-12 w-auto object-contain object-left" loading="lazy">
+        <p class="text-sm text-muted leading-relaxed flex-1"
+           data-en="Flexible packaging for Savola's cooking oil brands in Egypt, including Afia. High-transparency BOPP and polyethylene laminates produced with food-safe solventless adhesives under ISO 22000 certification. High-volume production scaled to seasonal demand peaks."
+           data-ar="تغليف مرن لعلامات زيت الطهي التابعة لمجموعة سافولا في مصر، بما فيها عافية. لامينيت BOPP وبولي إيثيلين عالي الشفافية، مُنتَج بمادة لاصقة غير مُذيِّبة وآمنة غذائيًا وفق شهادة ISO 22000، مع إنتاج عالي الحجم مُكيَّف مع ذروات الطلب الموسمي.">
+          Flexible packaging for Savola's cooking oil brands in Egypt, including Afia. High-transparency BOPP and PE laminates with food-safe solventless adhesives under ISO 22000, scaled to seasonal demand peaks.
+        </p>
+        <div class="pt-4 border-t border-border flex items-center justify-between">
+          <div>
+            <div class="s-label text-muted mb-0.5" data-en="Primary output" data-ar="المنتج الأساسي">Primary output</div>
+            <div class="text-sm font-medium text-ink" data-en="Edible oil flexible packaging" data-ar="تغليف زيوت الطعام المرن">Edible oil flexible packaging</div>
+          </div>
+          <div class="text-crimson" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Eva Pharma -->
+      <div class="flex flex-col gap-4 rounded-sm border border-border p-6 rv d2">
+        <div class="flex items-center justify-between">
+          <div class="s-label text-crimson" data-en="Pharmaceuticals" data-ar="أدوية">Pharmaceuticals</div>
+        </div>
+        <img src="https://riopack.com/laravel-filemanager/photos/shares/Evapharma.jpeg"
+             alt="Eva Pharma" class="h-12 w-auto object-contain object-left" loading="lazy">
+        <p class="text-sm text-muted leading-relaxed flex-1"
+           data-en="BRC-compliant pharmaceutical packaging including printed aluminium blister foils, carton board, and specialty laminates. Full batch traceability and documented QC under ISO 9001 and ISO 22000. Every production run verified against regulatory specifications before dispatch."
+           data-ar="تغليف دوائي متوافق مع BRC، يشمل رقائق ألومنيوم مطبوعة للبليستر، وورق مقوى، ولامينيت متخصص. تتبع كامل للدفعات وضبط جودة موثق وفق ISO 9001 وISO 22000، مع التحقق من كل دورة إنتاج قبل الشحن.">
+          BRC-compliant pharmaceutical packaging including printed aluminium blister foils, carton board, and specialty laminates. Full batch traceability and QC under ISO 9001 and ISO 22000, verified before every dispatch.
+        </p>
+        <div class="pt-4 border-t border-border flex items-center justify-between">
+          <div>
+            <div class="s-label text-muted mb-0.5" data-en="Primary output" data-ar="المنتج الأساسي">Primary output</div>
+            <div class="text-sm font-medium text-ink" data-en="Blister foils &amp; pharma cartons" data-ar="رقائق البليستر وعلب الأدوية">Blister foils &amp; pharma cartons</div>
+          </div>
+          <div class="text-crimson" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /featured grid -->
+
+    <!-- Supporting partners -->
+    <div class="rounded-sm border border-border p-6 rv d3">
+      <div class="s-label text-muted mb-6" data-en="More trusted partners" data-ar="شركاء موثوقون آخرون">More trusted partners</div>
+      <div class="flex flex-wrap items-center gap-x-10 gap-y-6">
+        <img src="https://riopack.com/laravel-filemanager/photos/shares/Lesaffre.jpeg"       alt="Lesaffre"        class="h-9 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-200" loading="lazy">
+        <img src="https://riopack.com/laravel-filemanager/photos/shares/Elvan.jpeg"           alt="Elvan Egypt"     class="h-9 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-200" loading="lazy">
+        <img src="https://riopack.com/laravel-filemanager/photos/shares/partners/Henkel.jpeg" alt="Henkel"          class="h-9 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-200" loading="lazy">
+        <img src="https://riopack.com/laravel-filemanager/photos/shares/EasternCo..jpeg"      alt="Eastern Company" class="h-9 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-200" loading="lazy">
+        <img src="https://riopack.com/laravel-filemanager/photos/shares/partners/Egyptair.jpeg" alt="EgyptAir"      class="h-9 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-200" loading="lazy">
+        <img src="https://riopack.com/laravel-filemanager/photos/shares/Gandour.jpeg"         alt="Gandour"         class="h-9 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-200" loading="lazy">
+      </div>
+    </div>
+
+  </div><!-- /site-card -->
+  </div><!-- /max-w -->
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     OUR LAB
+══════════════════════════════════════════ -->
+<section id="lab" class="py-16 lg:py-24">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card px-8 lg:px-14 py-12 lg:py-16">
+
+    <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
+
+      <!-- Left: text (3 cols) -->
+      <div class="lg:col-span-3">
+        <div class="s-label mb-4 rv" data-en="Quality control" data-ar="ضبط الجودة">Quality control</div>
+        <h2 class="font-serif text-ink font-light leading-tight mb-8 rv d1"
+            style="font-size:clamp(1.9rem,4vw,2.9rem);" data-en="Our lab" data-ar="مختبرنا">Our lab</h2>
+        <div class="space-y-5 rv d2" style="color:#3b2f1e;font-size:1.0315rem;line-height:1.75;max-width:52ch;">
+          <p data-en="Our quality control laboratory supports every stage of production, from incoming material verification to final print inspection. Equipment covers adhesion, seal strength, laminate integrity, and color calibration."
+             data-ar="يدعم مختبر ضبط الجودة لدينا كل مرحلة من مراحل الإنتاج، من التحقق من المواد الواردة إلى التفتيش النهائي على الطباعة. تشمل الأجهزة الالتصاق وقوة الختم وسلامة الطبقات المركّبة ومعايرة الألوان.">Our quality control laboratory supports every stage of production, from incoming material verification to final print inspection. Equipment covers adhesion, seal strength, laminate integrity, and color calibration.</p>
+          <p data-en="Our graphic design and pre-press department translates client briefs into precise packaging outcomes, closing the gap between concept and production with technical accuracy at every step."
+             data-ar="يترجم قسم التصميم الجرافيكي وما قبل الطباعة لدينا متطلبات العملاء إلى نتائج تغليف دقيقة، سادًّا الفجوة بين المفهوم والإنتاج بدقة تقنية في كل خطوة.">Our graphic design and pre-press department translates client briefs into precise packaging outcomes, closing the gap between concept and production with technical accuracy at every step.</p>
+        </div>
+
+        <div class="mt-10 grid grid-cols-2 gap-x-8 gap-y-3 rv d3">
+          <div class="flex items-center gap-2 text-sm" style="color:#3b2f1e;">
+            <span class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0"></span>
+            <span data-en="Color calibration &amp; matching" data-ar="معايرة الألوان ومطابقتها">Color calibration &amp; matching</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm" style="color:#3b2f1e;">
+            <span class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0"></span>
+            <span data-en="Ink adhesion testing" data-ar="اختبار التصاق الحبر">Ink adhesion testing</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm" style="color:#3b2f1e;">
+            <span class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0"></span>
+            <span data-en="Laminate bond strength" data-ar="قوة تثبيت الطبقات المركّبة">Laminate bond strength</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm" style="color:#3b2f1e;">
+            <span class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0"></span>
+            <span data-en="Seal integrity checks" data-ar="فحوصات سلامة الختم">Seal integrity checks</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm" style="color:#3b2f1e;">
+            <span class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0"></span>
+            <span data-en="Print registration control" data-ar="ضبط تسجيل الطباعة">Print registration control</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm" style="color:#3b2f1e;">
+            <span class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0"></span>
+            <span data-en="Film thickness measurement" data-ar="قياس سماكة الفيلم">Film thickness measurement</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm" style="color:#3b2f1e;">
+            <span class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0"></span>
+            <span data-en="Antifungi treatment QC" data-ar="ضبط جودة المعالجة المضادة للفطريات">Antifungi treatment QC</span>
+          </div>
+          <div class="flex items-center gap-2 text-sm" style="color:#3b2f1e;">
+            <span class="w-1.5 h-1.5 rounded-full bg-crimson shrink-0"></span>
+            <span data-en="Pre-press proofing" data-ar="تدقيق ما قبل الطباعة">Pre-press proofing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: images (2 cols) -->
+      <div class="lg:col-span-2 space-y-3 rv d2">
+        <div class="aspect-[4/3] overflow-hidden rounded-sm">
+          <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?fit=crop&w=600&h=450&q=80"
+               alt="Quality control lab equipment" class="w-full h-full object-cover" loading="lazy" decoding="async">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="aspect-square overflow-hidden rounded-sm">
+            <img src="https://images.unsplash.com/photo-1582560475093-ba66accbc424?fit=crop&w=300&h=300&q=80"
+                 alt="Lab testing instrument" class="w-full h-full object-cover" loading="lazy" decoding="async">
+          </div>
+          <div class="aspect-square overflow-hidden rounded-sm">
+            <img src="https://images.unsplash.com/photo-1579165466991-467135ad3110?fit=crop&w=300&h=300&q=80"
+                 alt="Print quality inspection" class="w-full h-full object-cover" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /site-card -->
+  </div><!-- /max-w -->
+</section>
+
+
+
+
+<!-- ══════════════════════════════════════════
+     CERTIFICATIONS
+══════════════════════════════════════════ -->
+<section id="certifications" class="py-16 lg:py-20">
+  <div class="max-w-4xl mx-auto px-4 lg:px-6">
+  <div class="site-card px-8 lg:px-14 py-12 lg:py-14">
+    <div class="s-label text-center mb-3 rv" data-en="Standards &amp; quality" data-ar="المعايير والجودة">Standards &amp; quality</div>
+    <h2 class="font-serif text-ink text-center font-light mb-12 rv d1"
+        style="font-size:clamp(1.6rem,3vw,2.25rem);" data-en="Certifications held" data-ar="الشهادات المحتازة">Certifications held</h2>
+    <div class="flex flex-wrap justify-center gap-6 rv d2">
+      <div class="cert p-5 text-center rounded-sm flex flex-col items-center" style="width:160px;">
+        <img src="certs/brc.jpg" alt="BRC Packaging Certification" class="h-24 w-auto object-contain mb-3" loading="lazy">
+        <div class="text-xs font-semibold text-ink-soft mb-0.5" data-en="BRC Packaging" data-ar="شهادة BRC للتغليف">BRC Packaging</div>
+        <div class="text-xs text-muted" data-en="Global Food Safety" data-ar="سلامة الغذاء العالمية">Global Food Safety</div>
+      </div>
+      <div class="cert p-5 text-center rounded-sm flex flex-col items-center" style="width:160px;">
+        <img src="certs/ukas.jpg" alt="UKAS Accreditation" class="h-24 w-auto object-contain mb-3" loading="lazy">
+        <div class="text-xs font-semibold text-ink-soft mb-0.5" data-en="UKAS Accreditation" data-ar="اعتماد UKAS">UKAS Accreditation</div>
+        <div class="text-xs text-muted" data-en="Management Systems" data-ar="أنظمة الإدارة">Management Systems</div>
+      </div>
+      <div class="cert p-5 text-center rounded-sm flex flex-col items-center" style="width:160px;">
+        <img src="certs/iso9001.jpg" alt="ISO 9001 Quality Management" class="h-24 w-auto object-contain mb-3" loading="lazy">
+        <div class="text-xs font-semibold text-ink-soft mb-0.5" data-en="ISO 9001" data-ar="ISO 9001">ISO 9001</div>
+        <div class="text-xs text-muted" data-en="Quality Management" data-ar="إدارة الجودة">Quality Management</div>
+      </div>
+      <div class="cert p-5 text-center rounded-sm flex flex-col items-center" style="width:160px;">
+        <img src="certs/iso22000.jpg" alt="ISO 22000 Food Safety" class="h-24 w-auto object-contain mb-3" loading="lazy">
+        <div class="text-xs font-semibold text-ink-soft mb-0.5" data-en="ISO 22000" data-ar="ISO 22000">ISO 22000</div>
+        <div class="text-xs text-muted" data-en="Food Safety Management" data-ar="إدارة سلامة الغذاء">Food Safety Management</div>
+      </div>
+      <div class="cert p-5 text-center rounded-sm flex flex-col items-center" style="width:160px;">
+        <img src="certs/iso18001.jpg" alt="ISO 18001 Occupational Health" class="h-24 w-auto object-contain mb-3" loading="lazy">
+        <div class="text-xs font-semibold text-ink-soft mb-0.5" data-en="ISO 18001" data-ar="ISO 18001">ISO 18001</div>
+        <div class="text-xs text-muted" data-en="Occupational Health &amp; Safety" data-ar="الصحة والسلامة المهنية">Occupational Health &amp; Safety</div>
+      </div>
+      <div class="cert p-5 text-center rounded-sm flex flex-col items-center" style="width:160px;">
+        <img src="certs/sedex.jpg" alt="Sedex Responsible Supply Chain" class="h-24 w-auto object-contain mb-3" loading="lazy">
+        <div class="text-xs font-semibold text-ink-soft mb-0.5" data-en="Sedex Member" data-ar="عضو Sedex">Sedex Member</div>
+        <div class="text-xs text-muted" data-en="Responsible Supply Chain" data-ar="سلسلة توريد مسؤولة">Responsible Supply Chain</div>
+      </div>
+    </div>
+  </div><!-- /site-card -->
+  </div><!-- /max-w -->
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TEAM
+══════════════════════════════════════════ -->
+<section id="team" class="py-16 lg:py-24">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card px-8 lg:px-14 py-12 lg:py-16">
+
+    <div class="mb-14">
+      <div class="s-label mb-3 rv" data-en="The people behind the press" data-ar="الأشخاص خلف المطبعة">The people behind the press</div>
+      <h2 class="font-serif text-ink font-light leading-tight rv d1"
+          style="font-size:clamp(1.9rem,4vw,2.9rem);" data-en="Our team" data-ar="فريقنا">Our team</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
+
+      <!-- CEO -->
+      <div class="tcard rv">
+        <div class="s-label mb-2" data-en="Chief Executive Officer" data-ar="الرئيس التنفيذي">Chief Executive Officer</div>
+        <h3 class="font-serif text-ink font-light mb-4" style="font-size:1.4rem;">Aboubakr El Sedik Ashour</h3>
+        <div class="space-y-2">
+          <a href="mailto:bakrashour@hotmail.com"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            bakrashour@hotmail.com
+          </a>
+          <a href="tel:+201222129465"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 017 2.18a2 2 0 012 2.18v3a2 2 0 01-1.44 1.93l-2.39.6a16 16 0 006.29 6.29l.6-2.39A2 2 0 0120.92 22z"/></svg>
+            +201222129465
+          </a>
+        </div>
+      </div>
+
+      <!-- GM -->
+      <div class="tcard rv d1">
+        <div class="s-label mb-2" data-en="General Manager" data-ar="المدير العام">General Manager</div>
+        <h3 class="font-serif text-ink font-light mb-4" style="font-size:1.4rem;">Aly Ashour</h3>
+        <div class="space-y-2">
+          <a href="mailto:alyashour@hotmail.com"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            alyashour@hotmail.com
+          </a>
+          <a href="tel:+201222182394"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 017 2.18a2 2 0 012 2.18v3a2 2 0 01-1.44 1.93l-2.39.6a16 16 0 006.29 6.29l.6-2.39A2 2 0 0120.92 22z"/></svg>
+            +201222182394
+          </a>
+        </div>
+      </div>
+
+      <!-- Customer Service -->
+      <div class="tcard rv d2">
+        <div class="s-label mb-2" data-en="Customer Service &amp; Planning" data-ar="خدمة العملاء والتخطيط">Customer Service &amp; Planning</div>
+        <h3 class="font-serif text-ink font-light mb-4" style="font-size:1.4rem;">Mahmoud Abdelrahman</h3>
+        <div class="space-y-2">
+          <a href="mailto:mahmoudkatria2020@yahoo.com"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            mahmoudkatria2020@yahoo.com
+          </a>
+          <a href="tel:+201002549928"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 017 2.18a2 2 0 012 2.18v3a2 2 0 01-1.44 1.93l-2.39.6a16 16 0 006.29 6.29l.6-2.39A2 2 0 0120.92 22z"/></svg>
+            +201002549928
+          </a>
+        </div>
+      </div>
+
+      <!-- Sales Manager -->
+      <div class="tcard rv">
+        <div class="s-label mb-2" data-en="Sales Manager" data-ar="مدير المبيعات">Sales Manager</div>
+        <h3 class="font-serif text-ink font-light mb-4" style="font-size:1.4rem;">Nashaat Elsisi</h3>
+        <div class="space-y-2">
+          <a href="mailto:nashatelsisy66@gmail.com"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            nashatelsisy66@gmail.com
+          </a>
+          <a href="tel:+201066671656"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 017 2.18a2 2 0 012 2.18v3a2 2 0 01-1.44 1.93l-2.39.6a16 16 0 006.29 6.29l.6-2.39A2 2 0 0120.92 22z"/></svg>
+            +201066671656
+          </a>
+        </div>
+      </div>
+
+      <!-- Procurement -->
+      <div class="tcard rv d1">
+        <div class="s-label mb-2" data-en="Procurement Manager" data-ar="مدير المشتريات">Procurement Manager</div>
+        <h3 class="font-serif text-ink font-light mb-4" style="font-size:1.4rem;">Yehia Ashour</h3>
+        <div class="space-y-2">
+          <a href="mailto:yehiaashourr@gmail.com"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            yehiaashourr@gmail.com
+          </a>
+          <a href="tel:+201222190040"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 017 2.18a2 2 0 012 2.18v3a2 2 0 01-1.44 1.93l-2.39.6a16 16 0 006.29 6.29l.6-2.39A2 2 0 0120.92 22z"/></svg>
+            +201222190040
+          </a>
+        </div>
+      </div>
+
+      <!-- Offset Sales -->
+      <div class="tcard rv d2">
+        <div class="s-label mb-2" data-en="Offset Sales Manager" data-ar="مدير مبيعات الأوفست">Offset Sales Manager</div>
+        <h3 class="font-serif text-ink font-light mb-4" style="font-size:1.4rem;">Reda Elmoussa</h3>
+        <div class="space-y-2">
+          <a href="mailto:redaelmoussa@riopack.com"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            redaelmoussa@riopack.com
+          </a>
+          <a href="tel:+021000595284"
+             class="flex items-center gap-2.5 text-sm text-muted hover:text-crimson transition-colors duration-200">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 017 2.18a2 2 0 012 2.18v3a2 2 0 01-1.44 1.93l-2.39.6a16 16 0 006.29 6.29l.6-2.39A2 2 0 0120.92 22z"/></svg>
+            +021000595284
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /site-card -->
+  </div><!-- /max-w -->
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════ -->
+<section id="contact" class="py-16 lg:py-24">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card px-8 lg:px-14 py-12 lg:py-16">
+
+    <div class="mb-14">
+      <div class="s-label mb-3 rv" data-en="Get in touch" data-ar="تواصل معنا">Get in touch</div>
+      <h2 class="font-serif text-ink font-light leading-tight rv d1"
+          style="font-size:clamp(1.9rem,4vw,2.9rem);" data-en="Contact us" data-ar="اتصل بنا">Contact us</h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+
+      <!-- Form -->
+      <div class="rv">
+        <form id="cform" novalidate class="space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="f-name" class="block text-[0.7rem] font-semibold tracking-[0.15em] uppercase text-ink-soft mb-2" data-en="Full name" data-ar="الاسم الكامل">Full name</label>
+              <input type="text" id="f-name" name="name" placeholder="Your name" class="finput" required data-en-placeholder="Your name" data-ar-placeholder="اسمك">
+            </div>
+            <div>
+              <label for="f-phone" class="block text-[0.7rem] font-semibold tracking-[0.15em] uppercase text-ink-soft mb-2" data-en="Phone" data-ar="الهاتف">Phone</label>
+              <input type="tel" id="f-phone" name="phone" placeholder="+20 …" class="finput" data-en-placeholder="+20 …" data-ar-placeholder="+20 …">
+            </div>
+          </div>
+          <div>
+            <label for="f-email" class="block text-[0.7rem] font-semibold tracking-[0.15em] uppercase text-ink-soft mb-2" data-en="Email address" data-ar="البريد الإلكتروني">Email address</label>
+            <input type="email" id="f-email" name="email" placeholder="you@company.com" class="finput" required data-en-placeholder="you@company.com" data-ar-placeholder="you@company.com">
+          </div>
+          <div>
+            <label for="f-subject" class="block text-[0.7rem] font-semibold tracking-[0.15em] uppercase text-ink-soft mb-2" data-en="Subject" data-ar="الموضوع">Subject</label>
+            <input type="text" id="f-subject" name="subject" placeholder="e.g. Rotogravure packaging enquiry" class="finput" data-en-placeholder="e.g. Rotogravure packaging enquiry" data-ar-placeholder="مثال: استفسار عن تغليف الروتوغرافيور">
+          </div>
+          <div>
+            <label for="f-msg" class="block text-[0.7rem] font-semibold tracking-[0.15em] uppercase text-ink-soft mb-2" data-en="Message" data-ar="الرسالة">Message</label>
+            <textarea id="f-msg" name="message" rows="5" placeholder="Describe your packaging requirements…" class="finput resize-none" required data-en-placeholder="Describe your packaging requirements…" data-ar-placeholder="اذكر متطلبات التغليف الخاصة بك…"></textarea>
+          </div>
+          <div id="f-err" class="text-crimson text-sm hidden" role="alert"></div>
+          <div id="f-ok" class="text-emerald-700 text-sm hidden" data-en="Message sent. We will be in touch shortly." data-ar="تم إرسال رسالتك. سنتواصل معك قريبًا.">Message sent. We will be in touch shortly.</div>
+          <button type="submit" class="btn-red w-full justify-center" data-en="Send message" data-ar="إرسال الرسالة">
+            Send message
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Info + map -->
+      <div class="space-y-8 rv d1">
+
+        <!-- Contact details -->
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-9 h-9 rounded-sm glass-light flex items-center justify-center shrink-0 mt-0.5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b71c2e" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="text-[0.65rem] tracking-[0.18em] uppercase text-muted mb-1" data-en="Address" data-ar="العنوان">Address</div>
+              <p class="text-sm leading-relaxed" style="color:#3b2f1e;"
+                 data-en-html="Third Industrial Zone (A2), Piece 2/5/7 &amp; 2/5/8<br>10th of Ramadan City, Charkia, Egypt"
+                 data-ar-html="المنطقة الصناعية الثالثة (A2)، قطعة 2/5/7 و2/5/8<br>مدينة العاشر من رمضان، الشرقية، مصر">
+                Third Industrial Zone (A2), Piece 2/5/7 &amp; 2/5/8<br>
+                10th of Ramadan City, Charkia, Egypt
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-9 h-9 rounded-sm glass-light flex items-center justify-center shrink-0 mt-0.5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b71c2e" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 017 2.18a2 2 0 012 2.18v3a2 2 0 01-1.44 1.93l-2.39.6a16 16 0 006.29 6.29l.6-2.39A2 2 0 0120.92 22z"/></svg>
+            </div>
+            <div>
+              <div class="text-[0.65rem] tracking-[0.18em] uppercase text-muted mb-1" data-en="Phone" data-ar="الهاتف">Phone</div>
+              <a href="tel:+20554413197" class="block text-sm hover:text-crimson transition-colors duration-200" style="color:#3b2f1e;">(+20) 55 4413 197</a>
+              <a href="tel:+201222129465" class="block text-sm hover:text-crimson transition-colors duration-200" style="color:#3b2f1e;">+201222129465</a>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-9 h-9 rounded-sm glass-light flex items-center justify-center shrink-0 mt-0.5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b71c2e" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="text-[0.65rem] tracking-[0.18em] uppercase text-muted mb-1" data-en="Email" data-ar="البريد الإلكتروني">Email</div>
+              <a href="mailto:sales@riopack.com" class="text-sm hover:text-crimson transition-colors duration-200" style="color:#3b2f1e;">sales@riopack.com</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Maps embed -->
+        <div class="map-wrap" style="height:clamp(200px,45vw,300px);">
+          <iframe
+            src="https://maps.google.com/maps?ll=30.275258,31.790885&z=16&t=h&output=embed&hl=en"
+            width="100%"
+            height="100%"
+            style="border:0;width:100%;height:100%;display:block;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Riopack factory, 10th of Ramadan City, Charkia, Egypt">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /site-card -->
+  </div><!-- /max-w -->
+</section>
+
+</main>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="text-cream py-16 pb-20">
+  <div class="max-w-5xl mx-auto px-4 lg:px-6">
+  <div class="site-card-dark px-8 lg:px-14 py-12 lg:py-14">
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pb-12 border-b border-cream/10">
+
+      <!-- Brand -->
+      <div class="col-span-2 lg:col-span-2">
+        <div class="mb-5">
+          <img src="logo.png" alt="Riopack Company" class="h-10 w-auto" style="filter:brightness(0) invert(1); max-width:200px;">
+        </div>
+        <p class="text-cream/45 text-sm leading-relaxed mb-6" style="max-width:30ch;"
+           data-en="Rotogravure printing, cutting, converting paper films of all kinds: rolls, sheets, printing and lining of paper, aluminium, and film."
+           data-ar="طباعة الروتوغرافيور والقطع وتحويل أغشية الورق بجميع أنواعها: لفات وصفائح وطباعة وبطانة للورق والألومنيوم والأغشية.">
+          Rotogravure printing, cutting, converting paper films of all kinds: rolls, sheets, printing and lining of paper, aluminium, and film.
+        </p>
+      </div>
+
+      <!-- Nav links -->
+      <div>
+        <div class="text-[0.6rem] tracking-[0.18em] uppercase text-cream/35 mb-5" data-en="Navigation" data-ar="التنقل">Navigation</div>
+        <ul class="space-y-3">
+          <li><a href="#about"          class="ft-a" data-en="About Riopack"    data-ar="عن ريوباك">About Riopack</a></li>
+          <li><a href="#offset"         class="ft-a" data-en="Offset printing"   data-ar="طباعة الأوفست">Offset printing</a></li>
+          <li><a href="#rotogravure"   class="ft-a" data-en="Rotogravure"       data-ar="الروتوغرافيور">Rotogravure</a></li>
+          <li><a href="#machinery"     class="ft-a" data-en="Machinery"        data-ar="الماكينات">Machinery</a></li>
+          <li><a href="#clients"       class="ft-a" data-en="Clients"          data-ar="العملاء">Clients</a></li>
+          <li><a href="#lab"           class="ft-a" data-en="Our lab"          data-ar="مختبرنا">Our lab</a></li>
+          <li><a href="#team"          class="ft-a" data-en="Our team"         data-ar="فريقنا">Our team</a></li>
+          <li><a href="#contact"       class="ft-a" data-en="Contact us"       data-ar="تواصل معنا">Contact us</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="text-[0.6rem] tracking-[0.18em] uppercase text-cream/35 mb-5" data-en="Contact" data-ar="تواصل">Contact</div>
+        <div class="space-y-3 text-sm" style="color:rgba(245,240,232,0.55);">
+          <p class="leading-relaxed"
+             data-en-html="Third Industrial Zone (A2),<br>10th of Ramadan City,<br>Charkia, Egypt"
+             data-ar-html="المنطقة الصناعية الثالثة (A2)،<br>مدينة العاشر من رمضان،<br>الشرقية، مصر">Third Industrial Zone (A2),<br>10th of Ramadan City,<br>Charkia, Egypt</p>
+          <a href="tel:+20554413197" class="block hover:text-cream transition-colors duration-200">(+20) 55 4413 197</a>
+          <a href="mailto:sales@riopack.com" class="block hover:text-cream transition-colors duration-200">sales@riopack.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-8 flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-3">
+      <p class="text-cream/25 text-xs"
+         data-en="© 2024 Riopack Co. All rights reserved. Rotogravure &amp; Offset Printing Specialist since 1926."
+         data-ar="© 2024 ريوباك. جميع الحقوق محفوظة. متخصصون في الروتوغرافيور والأوفست منذ 1926.">© 2024 Riopack Co. All rights reserved. Rotogravure &amp; Offset Printing Specialist since 1926.</p>
+      <div class="flex gap-6">
+        <a href="#" class="text-cream/25 text-xs hover:text-cream/55 transition-colors duration-200" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a>
+        <a href="#" class="text-cream/25 text-xs hover:text-cream/55 transition-colors duration-200" data-en="Terms of Service" data-ar="شروط الخدمة">Terms of Service</a>
+      </div>
+    </div>
+  </div><!-- /site-card-dark -->
+  </div><!-- /max-w -->
+</footer>
+
+
+<script>
+  // ── Nav solid on scroll ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('solid', window.scrollY > 24);
+  }, { passive: true });
+
+  // ── Mobile menu ──
+  const mobMenu  = document.getElementById('mob-menu');
+  const mobOpen  = document.getElementById('mob-open');
+  const mobClose = document.getElementById('mob-close');
+
+  mobOpen.addEventListener('click', () => {
+    mobMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  mobClose.addEventListener('click', closeMob);
+
+  function closeMob() {
+    mobMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── Scroll reveal ──
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // ── Contact form ──
+  const form = document.getElementById('cform');
+  const errEl = document.getElementById('f-err');
+  const okEl  = document.getElementById('f-ok');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    errEl.classList.add('hidden');
+    okEl.classList.add('hidden');
+
+    const name  = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const msg   = document.getElementById('f-msg').value.trim();
+
+    if (!name) {
+      errEl.textContent = 'Please enter your name.';
+      errEl.classList.remove('hidden');
+      return;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errEl.textContent = 'Please enter a valid email address.';
+      errEl.classList.remove('hidden');
+      return;
+    }
+    if (!msg) {
+      errEl.textContent = 'Please enter a message.';
+      errEl.classList.remove('hidden');
+      return;
+    }
+
+    okEl.classList.remove('hidden');
+    form.reset();
+  });
+
+  // ── Scroll-driven video background (desktop only) ──
+  (function() {
+    if (window.matchMedia('(max-width: 767px)').matches) return;
+    const vid    = document.getElementById('bg-video');
+    const scrim  = document.getElementById('video-scrim');
+    let target   = 0;
+    let current  = 0;
+    let rafId    = null;
+    let stopTimer = null;
+    let moving   = false;
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function tick() {
+      if (!vid.duration) { rafId = requestAnimationFrame(tick); return; }
+
+      // Faster lerp while scrolling, slower/snappier when nearly stopped
+      const factor = moving ? 0.18 : 0.25;
+      current = lerp(current, target, factor);
+
+      const gap = Math.abs(target - current);
+      if (gap > 0.008) {
+        vid.currentTime = current;
+        rafId = requestAnimationFrame(tick);
+      } else {
+        // Snap precisely and stop
+        vid.currentTime = target;
+        current = target;
+        rafId = null;
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      const max = document.body.scrollHeight - window.innerHeight;
+      if (!vid.duration || max <= 0) return;
+
+      target = Math.min(window.scrollY / max, 1) * vid.duration;
+      moving = true;
+      scrim.classList.add('active');     // dim to hide seek jank
+
+      clearTimeout(stopTimer);
+      stopTimer = setTimeout(() => {
+        moving = false;
+        scrim.classList.remove('active'); // fade scrim out
+        // Final precise snap
+        vid.currentTime = target;
+        current = target;
+        rafId = null;
+      }, 130);
+
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    }, { passive: true });
+
+    vid.addEventListener('loadedmetadata', () => {
+      vid.pause();
+      vid.currentTime = 0;
+      current = 0; target = 0;
+    });
+    vid.addEventListener('play', () => vid.pause()); // keep paused always
+  })();
+
+  // ── Language toggle ──
+  function toggleLang() {
+    const current = document.documentElement.lang || 'en';
+    setLang(current === 'ar' ? 'en' : 'ar');
+  }
+
+  function setLang(lang) {
+    const isAr = lang === 'ar';
+    document.documentElement.lang = lang;
+    document.documentElement.dir  = isAr ? 'rtl' : 'ltr';
+
+    // Text content
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = isAr ? el.dataset.ar : el.dataset.en;
+      if (val !== undefined) {
+        // For elements containing an SVG, only touch text nodes (not the SVG itself)
+        const svg = el.querySelector('svg');
+        if (svg) {
+          const textNodes = [...el.childNodes].filter(n => n.nodeType === 3);
+          let set = false;
+          textNodes.forEach(n => {
+            if (!set && n.textContent.trim()) { n.textContent = val + ' '; set = true; }
+            else { n.textContent = ''; }
+          });
+        } else {
+          el.textContent = val;
+        }
+      }
+    });
+
+    // HTML content (for elements with inline tags like <br> or <em>)
+    document.querySelectorAll('[data-en-html]').forEach(el => {
+      el.innerHTML = isAr ? el.dataset.arHtml : el.dataset.enHtml;
+    });
+
+    // Placeholders
+    document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+      el.placeholder = isAr ? el.dataset.arPlaceholder : el.dataset.enPlaceholder;
+    });
+
+    // Toggle button label
+    const btn = document.getElementById('lang-toggle');
+    if (btn) btn.textContent = isAr ? 'EN' : 'عربي';
+
+    // Swap logo: Arabic → logo.png, English → favicon.png
+    const navLogo = document.getElementById('nav-logo');
+    if (navLogo) navLogo.src = isAr ? 'logo.png' : 'favicon.png';
+
+    try { localStorage.setItem('riopack-lang', lang); } catch(e) {}
+  }
+
+  // Restore saved language
+  try {
+    const saved = localStorage.getItem('riopack-lang');
+    if (saved === 'ar') setLang('ar');
+  } catch(e) {}
+
+</script>
+
+</body>
+</html>
