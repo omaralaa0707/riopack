@@ -180,26 +180,47 @@
     #nav.solid .nav-mob-btn { color: #18120a; }
 
     /* ── Mobile menu ── */
-    #mob-menu {
-      display: none;
+    #mob-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(245,240,232,0.88);
+      background: rgba(10,6,2,0.55);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index: 290;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    #mob-backdrop.open { opacity: 1; pointer-events: auto; }
+    #mob-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(300px, 88vw);
+      background: rgba(245,240,232,0.97);
       backdrop-filter: blur(36px) saturate(1.6);
       -webkit-backdrop-filter: blur(36px) saturate(1.6);
       z-index: 300;
+      display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2.25rem;
+      padding: 5rem 2rem 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.38s cubic-bezier(0.16,1,0.3,1);
+      overflow-y: auto;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.18);
     }
-    #mob-menu.open { display: flex; }
+    #mob-menu.open { transform: translateX(0); }
     .mob-a {
       font-family: 'Spectral', serif;
-      font-size: 1.85rem;
+      font-size: 1.4rem;
       font-weight: 300;
       color: #18120a;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(24,18,10,0.09);
       transition: color 0.2s ease;
+      text-decoration: none;
+      display: block;
     }
     .mob-a:hover { color: #b71c2e; }
 
@@ -417,13 +438,14 @@
 <!-- ══════════════════════════════════════════
      MOBILE MENU
 ══════════════════════════════════════════ -->
+<div id="mob-backdrop" aria-hidden="true"></div>
 <div id="mob-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
   <button id="mob-close" class="absolute top-5 right-5 p-2" style="color:#18120a;" aria-label="Close menu">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <path d="M18 6 6 18M6 6l12 12"/>
     </svg>
   </button>
-  <nav class="flex flex-col items-center gap-8 text-center">
+  <nav class="flex flex-col w-full">
     <a href="index.html#about"        class="mob-a" data-en="About"      data-ar="عن الشركة">About</a>
     <a href="index.html#rotogravure"  class="mob-a" data-en="Printing"   data-ar="الطباعة">Printing</a>
     <a href="rotogravure.html"        class="mob-a" data-en="Products"   data-ar="المنتجات">Products</a>
@@ -431,6 +453,10 @@
     <a href="index.html#lab"          class="mob-a" data-en="Our Lab"    data-ar="مختبرنا">Our Lab</a>
     <a href="index.html#team"         class="mob-a" data-en="Team"       data-ar="الفريق">Team</a>
     <a href="index.html#contact"      class="mob-a" data-en="Contact us" data-ar="تواصل معنا">Contact</a>
+    <a href="index.html#contact" class="btn-red mt-6 w-full justify-center" data-en="Contact us" data-ar="تواصل معنا">
+      Contact us
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
   </nav>
 </div>
 
@@ -843,13 +869,15 @@
   }, { passive: true });
 
   // ── Mobile menu ──
-  const mobMenu  = document.getElementById('mob-menu');
-  const mobOpen  = document.getElementById('mob-open');
-  const mobClose = document.getElementById('mob-close');
-  mobOpen.addEventListener('click', () => { mobMenu.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  const mobMenu     = document.getElementById('mob-menu');
+  const mobBackdrop = document.getElementById('mob-backdrop');
+  const mobOpen     = document.getElementById('mob-open');
+  const mobClose    = document.getElementById('mob-close');
+  mobOpen.addEventListener('click', () => { mobMenu.classList.add('open'); mobBackdrop.classList.add('open'); document.body.style.overflow = 'hidden'; });
   mobClose.addEventListener('click', closeMob);
+  mobBackdrop.addEventListener('click', closeMob);
   mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMob));
-  function closeMob() { mobMenu.classList.remove('open'); document.body.style.overflow = ''; }
+  function closeMob() { mobMenu.classList.remove('open'); mobBackdrop.classList.remove('open'); document.body.style.overflow = ''; }
 
   // ── Scroll reveal ──
   const io = new IntersectionObserver((entries) => {
