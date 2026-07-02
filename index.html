@@ -2230,33 +2230,61 @@
   const errEl = document.getElementById('f-err');
   const okEl  = document.getElementById('f-ok');
 
-  form.addEventListener('submit', e => {
+  const submitBtn = form.querySelector('[type="submit"]');
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     errEl.classList.add('hidden');
     okEl.classList.add('hidden');
 
+    const isAr = document.documentElement.lang === 'ar';
     const name  = document.getElementById('f-name').value.trim();
     const email = document.getElementById('f-email').value.trim();
     const msg   = document.getElementById('f-msg').value.trim();
 
     if (!name) {
-      errEl.textContent = 'Please enter your name.';
+      errEl.textContent = isAr ? 'يرجى إدخال اسمك.' : 'Please enter your name.';
       errEl.classList.remove('hidden');
       return;
     }
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errEl.textContent = 'Please enter a valid email address.';
+      errEl.textContent = isAr ? 'يرجى إدخال بريد إلكتروني صحيح.' : 'Please enter a valid email address.';
       errEl.classList.remove('hidden');
       return;
     }
     if (!msg) {
-      errEl.textContent = 'Please enter a message.';
+      errEl.textContent = isAr ? 'يرجى إدخال رسالتك.' : 'Please enter a message.';
       errEl.classList.remove('hidden');
       return;
     }
 
-    okEl.classList.remove('hidden');
-    form.reset();
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<svg class="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`;
+
+    try {
+      const res = await fetch('https://formspree.io/f/xaqglprq', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+
+      if (res.ok) {
+        okEl.classList.remove('hidden');
+        form.reset();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        errEl.textContent = data.errors?.[0]?.message
+          || (isAr ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'Something went wrong. Please try again.');
+        errEl.classList.remove('hidden');
+      }
+    } catch {
+      errEl.textContent = isAr ? 'تعذّر إرسال الرسالة. تحقق من اتصالك بالإنترنت.' : 'Could not send message. Check your internet connection.';
+      errEl.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `${isAr ? 'إرسال الرسالة' : 'Send message'} <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+    }
   });
 
   // ── Scroll-driven video background (desktop only) ──
